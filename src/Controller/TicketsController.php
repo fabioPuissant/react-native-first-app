@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\IllegalStateException;
 use App\Model\TicketModel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -16,12 +19,40 @@ use Symfony\Component\Routing\Annotation\Route;
 class TicketsController extends AbstractController
 {
 
+    /**
+     * @param Request $request
+     * @param TicketModel $ticketModel
+     * @return JsonResponse
+     * @Route("", name="tickets_index")
+     */
     public function index(Request $request, TicketModel $ticketModel)
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/TicketsController.php',
-        ]);
+       $tickets = $ticketModel->getAll();
+
+       return new JsonResponse($tickets, 200);
+    }
+
+    /**
+     * @Route("/raiseVote", methods={"POST"})
+     * @param Request $request
+     * @param TicketModel $ticketModel
+     * @return JsonResponse|Response
+     * @throws \App\IllegalStateException
+     */
+    public function addOneVoteToTicket(Request $request, TicketModel $ticketModel){
+        $ticketId = $request->get("ticketId");
+        if($ticketId && ctype_digit($ticketId)){
+            try{
+                $ticketModel->addVoteToTicket($ticketId);
+                $ticket = $ticketModel->getTicketWithId($ticketId);
+                return new JsonResponse($ticket, 200);
+            }
+            catch (IllegalStateException $exception){
+                return new Response($exception->getMessage(), 500);
+            }
+        }
+
+        return new Response("Given filter param ticketId was not correct!", 500);
     }
 
 

@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="477c7bf9-3c14-4f6e-80ce-8e4d88d76b58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Util/PdoFactory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RoomsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RoomsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AssetsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AssetsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TicketsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TicketsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AssetModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AssetModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/RoomModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/RoomModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/TicketModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TicketModel.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +82,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
   </component>
   <component name="RunDashboard">
@@ -102,7 +107,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1573490669337</updated>
-      <workItem from="1573490670529" duration="18601000" />
+      <workItem from="1573490670529" duration="24852000" />
     </task>
     <servers />
   </component>

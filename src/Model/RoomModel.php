@@ -4,22 +4,19 @@ namespace App\Model;
 
 
 use App\Entity\Room;
+use App\Util\PdoFactory;
 use PDO;
 
 class RoomModel
 {
     private $pdo;
-    private $user = "student";
-    private $password = "root";
-
     /**
      * RoomModel constructor.
-     * @param $pdo
+     * @param PdoFactory $pdoFactory
      */
-    public function __construct()
+    public function __construct(PdoFactory $pdoFactory)
     {
-        $this->pdo = new \PDO("mysql:host=192.168.33.22;dbname=wp1DB", $this->user, $this->password);
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->pdo = $pdoFactory->getPdo();
     }
 
     public function getAll(): array
