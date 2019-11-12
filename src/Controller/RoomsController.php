@@ -32,58 +32,60 @@ class RoomsController extends AbstractController
 //    }
 
     /**
-     * @Route("", name="rooms_happiness", methods={"GET", "POST"})
+     * @Route("/happiness", name="rooms_happiness", methods={"GET"})
      * @param Request $request
      * @param RoomModel $roomModel
      * @return Response
      */
     public function getHappinessScoreByRoomName(Request $request, RoomModel $roomModel)
     {
-        $query = (String)$request->query->get("q");
         $name = (String)$request->query->get("name");
+        $score = (String)$request->query->get("lower_then");
         if ($name) {
-            switch (strtolower($query)) {
-                case "happinessscore":
-                    $score = (String)$request->query->get("lower_then");
-                    if($score){
-                        $rooms = $roomModel->getAllLowerThan($score);
-                        return new JsonResponse($rooms, 200);
-                    }
-                    $room = $roomModel->getByName($name);
-                    $score = $room->happinessScore;
-                    return new JsonResponse(["HappinessScore" => $score]);
-                case "add_score":
-                    $score = $request->request->get("score");
-                    $roomModel->updateHappinessScore($name, $score);
-                    $room = $roomModel->getByName($name);
-                    return new JsonResponse($room, 200);
-                default:
-                    throw new BadRequestHttpException();
-            }
+            $room = $roomModel->getByName($name);
+            $score = $room->happinessScore;
+            return new JsonResponse(["HappinessScore" => $score]);
         }
-        return new JsonResponse($roomModel->getAll(), 200);
+        if ($score) {
+            $rooms = $roomModel->getAllLowerThan($score);
+            return new JsonResponse($rooms, 200);
+        }
+        return new Response("Bad Request", 500);
     }
-
-    /*
-     * @Route(
-     */
 
     /**
      * @Route("/addHapiness", name="rooms_happiness_post", methods={"GET", "POST"})
      * @param Request $request
      * @param RoomModel $roomModel
-     * @return RedirectResponse
+     * @return JsonResponse|Response
      */
-    public function addHappinessScore(Request $request, RoomModel $roomModel)
+    public
+    function addHappinessScore(Request $request, RoomModel $roomModel)
     {
         $name = $request->query->get("name");
         $scoreString = $request->getContent();
         $score = json_decode($scoreString);
-
-        if($name && $score){
-            $roomModel->updateHappinessScore( $name, $score);
-            return new RedirectResponse("http://127.0.0.1:8000/rooms");
+        if ($name && $score) {
+            $roomModel->updateHappinessScore($name, $score->score);
+            $room= $roomModel->getByName($name);
+           return new JsonResponse($room, 200);
         }
 
+        return new Response("Bad request", 500);
+    }
+
+    /**
+     * @Route("", name="rooms_index", methods={"GET"})
+     * @param Request $request
+     * @param RoomModel $roomModel
+     * @return JsonResponse
+     */
+    public function index(Request $request, RoomModel $roomModel){
+        $name = $request->query->get("name");
+        if($name){
+            $room = $roomModel->getByName($name);
+            return new JsonResponse($room, 200);
+        }
+        return new JsonResponse($roomModel->getAll(), 200);
     }
 }
