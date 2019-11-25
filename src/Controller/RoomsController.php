@@ -40,21 +40,22 @@ class RoomsController extends AbstractController
     public function getHappinessScoreByRoomName(Request $request, RoomModel $roomModel)
     {
         $name = (String)$request->query->get("name");
-        $score = (String)$request->query->get("lower_then");
+        $score = (String)$request->query->get("lower_than");
+        if ($score & $name) {
+            $rooms = $roomModel->getAllLowerThan($score);
+            return new JsonResponse($rooms, 200);
+        }
         if ($name) {
             $room = $roomModel->getByName($name);
             $score = $room->happinessScore;
             return new JsonResponse(["HappinessScore" => $score]);
         }
-        if ($score) {
-            $rooms = $roomModel->getAllLowerThan($score);
-            return new JsonResponse($rooms, 200);
-        }
-        return new Response("Bad Request", 500);
+
+        return new JsonResponse(["status" => "Status Failed"], 500);
     }
 
     /**
-     * @Route("/addHapiness", name="rooms_happiness_post", methods={"GET", "POST"})
+     * @Route("/addHapiness", name="rooms_happiness_post", methods={"POST"})
      * @param Request $request
      * @param RoomModel $roomModel
      * @return JsonResponse|Response
