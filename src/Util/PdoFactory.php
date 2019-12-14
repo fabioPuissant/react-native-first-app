@@ -7,9 +7,9 @@ use PDO;
 class PdoFactory
 {
     private $pdo;
-    private $user = "student";
-    private $password = "root";
-    private $host = "192.168.33.22";
+    private $user = "root";
+    private $password = "";
+    private $host = "127.0.0.1:3306";
     private $dbName = "wp1DB";
 
     public function __construct()

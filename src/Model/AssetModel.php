@@ -52,9 +52,9 @@ class AssetModel
 
     private function mapDataToAsset($data): Asset{
         $asset = new Asset();
-        $asset->id = $data["Id"];
-        $asset->name = $data["Name"];
-        $asset->roomId = $data["RoomId"];
+        $asset->id = $data["id"];
+        $asset->name = $data["name"];
+        $asset->roomId = $data["roomId"];
 
         return $asset;
     }

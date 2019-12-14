@@ -68,9 +68,9 @@ class RoomModel
     private function mapToRoom($row): Room
     {
         $room = new Room();
-        $room->setName($row["Name"]);
-        $room->setId($row["Id"]);
-        $room->setHappinessScore($row["HappinessScore"]);
+        $room->setName($row["name"]);
+        $room->setId($row["id"]);
+        $room->setHappinessScore($row["happinessScore"]);
 
         return $room;
     }

@@ -99,10 +99,10 @@ class TicketModel
     private function mapDataToTicket($data)
     {
         $ticket = new Ticket();
-        $ticket->setId($data["Id"]);
-        $ticket->setAssetId($data["AssetId"]);
-        $ticket->setNumberOfVotes($data["NumberOfVotes"]);
-        $ticket->setDescription($data["Description"]);
+        $ticket->setId($data["id"]);
+        $ticket->setAssetId($data["assetId"]);
+        $ticket->setNumberOfVotes($data["numberOfVotes"]);
+        $ticket->setDescription($data["description"]);
 
         return $ticket;
     }
