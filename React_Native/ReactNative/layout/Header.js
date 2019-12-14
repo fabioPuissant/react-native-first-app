@@ -1,22 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
+import { Appbar } from 'react-native-paper';
 const Header = props => {
   return (
-    <View style={styles.header}>
-      <Text style={styles.headerTitle}>{props.title} </Text>
-    </View>
+    <Appbar.Header>
+      <Appbar.BackAction />
+      <Appbar.Content title={props.title} />
+    </Appbar.Header>
   );
 };
 
 const styles = StyleSheet.create({
   header: {
-    width: '100%',
-    height: 90,
-    paddingTop: 36,
-    backgroundColor: '#FF69B4',
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: 'center'
   },
   headerTitle: {
     color: 'white',

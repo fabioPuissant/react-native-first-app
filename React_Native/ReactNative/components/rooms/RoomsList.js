@@ -14,15 +14,21 @@ const RoomsList = ({ room: { rooms }, getRooms }) => {
   return (
     <View>
       <Header title='All Rooms' />
-      {!rooms && rooms.length === 0 ? (
-        <Text>No rooms to show...</Text>
-      ) : (
-        rooms.map(room => <RoomItem room={room} key={room.id} />)
-      )}
+      <View style={styles.centerHoriz}>
+        {!rooms && rooms.length === 0 ? (
+          <Text>No rooms to show...</Text>
+        ) : (
+          rooms.map(room => <RoomItem room={room} key={room.id} />)
+        )}
+      </View>
     </View>
   );
 };
-
+const styles = StyleSheet.create({
+  centerHoriz: {
+    padding: 20
+  }
+});
 RoomsList.propTypes = {
   room: PropTypes.object.isRequired,
   getRooms: PropTypes.func.isRequired
