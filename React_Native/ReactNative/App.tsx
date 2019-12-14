@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import SomeTest from './components/SomeTest';
 import { Provider } from 'react-redux';
 import store from './store';
+import Home from './screens/Home';
 
 export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-        <SomeTest />
+        <Home />
       </View>
     </Provider>
   );
@@ -16,9 +16,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    flex: 1
   }
 });
