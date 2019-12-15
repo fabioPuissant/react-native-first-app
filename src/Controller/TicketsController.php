@@ -54,6 +54,4 @@ class TicketsController extends AbstractController
 
         return new Response("Given filter param ticketId was not correct!", 500);
     }
-
-
 }

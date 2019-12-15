@@ -50,6 +50,25 @@ class AssetModel
         throw new IllegalStateException("Name of asset not correctly set!");
     }
 
+    public function getByRoom(int $roomId){
+        if($roomId) {
+            $statement = $this->pdo->prepare("SELECT * FROM asset WHERE RoomId = :roomId");
+            $statement->bindParam(":roomId", $roomId, PDO::PARAM_INT);
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+            $statement->execute();
+            $assets = array();
+            while ($row = $statement->fetch()) {
+                $asset = $this->mapDataToAsset($row);
+                array_push($assets, $asset);
+            }
+            return $assets;
+
+            throw new IllegalStateException(`No asset found with roomId: ${roomId}!`);
+        }
+
+        throw new IllegalStateException("Name of asset not correctly set!");
+    }
+
     private function mapDataToAsset($data): Asset{
         $asset = new Asset();
         $asset->id = $data["id"];
