@@ -1,18 +1,9 @@
 {
   "devToolsPort": 19002,
-<<<<<<< HEAD
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": "https://ta-wh5.anonymous.reactnative.exp.direct",
-  "packagerNgrokUrl": "https://packager.ta-wh5.anonymous.reactnative.exp.direct",
-  "ngrokPid": 11239
-=======
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 1552,
+  "packagerPid": 15349,
   "expoServerNgrokUrl": "https://sf-5xa.anonymous.reactnative.exp.direct",
   "packagerNgrokUrl": "https://packager.sf-5xa.anonymous.reactnative.exp.direct",
-  "ngrokPid": 1844
->>>>>>> 4ff34f131330ba301c860a82e550f91b39f09ac2
+  "ngrokPid": 15359
 }

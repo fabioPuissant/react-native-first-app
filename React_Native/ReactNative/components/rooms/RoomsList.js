@@ -10,26 +10,20 @@ import {
   Keyboard
 } from 'react-native';
 import { connect } from 'react-redux';
-import {
-  getRooms,
-  findRoomWithHappinessHigherThan
-} from '../../redux/actions/roomActions';
+import { getRooms } from '../../redux/actions/roomActions';
 import Header from '../../layout/Header';
 import RoomItem from './RoomItem';
 
-const RoomsList = ({
-  room: { rooms },
-  navigation,
-  getRooms,
-  findRoomWithHappinessHigherThan
-}) => {
+const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
   const [enteredValue, setEnteredValue] = useState('');
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(false);
+  const [displayRooms, setDisplayRooms] = useState([]);
 
   useEffect(() => {
     getRooms();
-  }, []);
+    setDisplayRooms(rooms);
+  }, [confirmed]);
 
   const numberInputHandler = inputText => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ''));
@@ -57,13 +51,10 @@ const RoomsList = ({
   };
 
   if (confirmed) {
-    //rooms = rooms.filter(r => r.happinessScore >= selectedNumber);
-    findRoomWithHappinessHigherThan(selectedNumber);
+    const foundRooms = rooms.filter(r => r.happinessScore >= selectedNumber);
+    console.log(rooms);
+    setDisplayRooms(foundRooms);
     setConfirmed(false);
-  } else {
-    if (!enteredValue) {
-      getRooms();
-    }
   }
 
   return (
@@ -76,10 +67,10 @@ const RoomsList = ({
         value={enteredValue}
       />
       <View style={styles.centerHoriz}>
-        {!rooms && rooms.length === 0 ? (
+        {!displayRooms && displayRooms.length === 0 ? (
           <Text>No rooms to show...</Text>
         ) : (
-          rooms.map(room => (
+          displayRooms.map(room => (
             <RoomItem navigation={navigation} room={room} key={room.id} />
           ))
         )}
@@ -102,6 +93,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  getRooms,
-  findRoomWithHappinessHigherThan
+  getRooms
 })(RoomsList);
