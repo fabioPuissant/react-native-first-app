@@ -2,9 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-
-import setCurrentRoom from '../../redux/actions/roomActions';
-import { Text } from 'react-native';
+import { setCurrentRoom } from '../../redux/actions/roomActions';
 
 const RoomItem = props => {
   return (
@@ -17,6 +15,7 @@ const RoomItem = props => {
       <Card.Actions>
         <Button
           onPress={() => {
+            props.setCurrentRoom(props.room);
             props.navigation.navigate('RoomScreen');
           }}
         >

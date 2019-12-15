@@ -1,20 +1,51 @@
-import React from 'react';
-import { Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { Text, FlatList, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getRooms } from '../redux/actions/roomActions';
-import { setCurrentAsset } from '../redux/actions/assetActions';
-const RoomScreen = ({ room: { current } }) => {
-  return <Text>Room screen</Text>;
+
+import {
+  setCurrentAsset,
+  findAssetsOfRoom,
+  clearCurrentAsset
+} from '../redux/actions/assetActions';
+
+const RoomScreen = ({
+  room: { current },
+  asset: { assets },
+  clearCurrentAsset,
+  setCurrentAsset,
+  findAssetsOfRoom
+}) => {
+  useEffect(() => {
+    findAssetsOfRoom(current);
+  }, []);
+
+  return (
+    <View>
+      {!assets && assets.length === 0 ? (
+        <Text>No Assets found</Text>
+      ) : (
+        assets.map(as => (
+          <Text key={as.id}>
+            {as.name} {as.roomId}
+          </Text>
+        ))
+      )}
+    </View>
+  );
 };
 
 RoomScreen.propTypes = {};
 
+const styles = StyleSheet.create({});
+
 const mapStateToProps = state => ({
-  room: state.room,
-  asset: state.asset
+  asset: state.asset,
+  room: state.room
 });
 
-export default connect(mapStateToProps, { getRooms, setCurrentAsset })(
-  RoomScreen
-);
+export default connect(mapStateToProps, {
+  clearCurrentAsset,
+  setCurrentAsset,
+  findAssetsOfRoom
+})(RoomScreen);

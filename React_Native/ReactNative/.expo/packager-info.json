@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://ta-wh5.anonymous.reactnative.exp.direct",
+  "packagerNgrokUrl": "https://packager.ta-wh5.anonymous.reactnative.exp.direct",
+  "ngrokPid": 11239
 }
