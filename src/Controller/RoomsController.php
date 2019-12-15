@@ -41,10 +41,11 @@ class RoomsController extends AbstractController
     {
         $name = (String)$request->query->get("name");
         $score = (String)$request->query->get("lower_than");
-        if ($score & $name) {
+        if ($score) {
             $rooms = $roomModel->getAllLowerThan($score);
             return new JsonResponse($rooms, 200);
         }
+
         if ($name) {
             $room = $roomModel->getByName($name);
             $score = $room->happinessScore;

@@ -28,6 +28,7 @@ class AssetsController extends AbstractController
     public function index(Request $request, AssetModel $assetModel)
     {
         $name = $request->query->get("name");
+        $roomId = $request->query->get("roomId");
         if ($name) {
             try {
                 $asset = $assetModel->getByName($name);
@@ -40,6 +41,17 @@ class AssetsController extends AbstractController
                 return new Response($exception->getMessage(), 500);
             }
         }
+
+        if ($roomId) {
+            try {
+                $assets = $assetModel->getByRoom($roomId);
+                return new JsonResponse($assets, 200);
+            }
+            catch (IllegalStateException $exception){
+                return new Response($exception->getMessage(), 500);
+            }
+        }
+
         $assets = $assetModel->getAll();
         return new JsonResponse($assets, 200);
     }
