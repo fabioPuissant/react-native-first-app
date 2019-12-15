@@ -1,21 +1,27 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
 import setCurrentRoom from '../../redux/actions/roomActions';
 import { Text } from 'react-native';
 
-const RoomItem = ({ room }) => {
+const RoomItem = props => {
   return (
     <Card style={styles.mgnV}>
-      <Card.Title title={'Room: ' + room.id} />
+      <Card.Title title={'Room: ' + props.room.id} />
       <Card.Content>
-        <Title>{room.name}</Title>
-        <Paragraph>{'Happiness Score: ' + room.happinessScore}</Paragraph>
+        <Title>{props.room.name}</Title>
+        <Paragraph>{'Happiness Score: ' + props.room.happinessScore}</Paragraph>
       </Card.Content>
       <Card.Actions>
-        <Button>See Assets</Button>
+        <Button
+          onPress={() => {
+            props.navigation.navigate('RoomScreen');
+          }}
+        >
+          See Assets
+        </Button>
       </Card.Actions>
     </Card>
   );

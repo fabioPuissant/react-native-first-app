@@ -5,13 +5,14 @@ import Home from './screens/Home';
 import { AppRegistry } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Provider as StoreProvider } from 'react-redux';
+import ApplicationNavigator from './navigation/ApplicationNavigator';
 
 export default function App() {
   return (
     <StoreProvider store={store}>
       <PaperProvider>
         <View style={styles.container}>
-          <Home />
+          <ApplicationNavigator />
         </View>
       </PaperProvider>
     </StoreProvider>

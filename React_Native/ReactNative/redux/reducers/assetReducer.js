@@ -1,15 +1,12 @@
-import Room from '../../models/Room';
 import {
-  GET_ROOMS,
-  FIND_ROOM,
-  CLEAR_CURRENT,
   SET_CURRENT,
-  ROOMS_ERROR,
-  SET_LOADING
+  SET_LOADING,
+  CLEAR_CURRENT,
+  ASSETS_ERROR
 } from '../constants/applicationConstants';
 
 const initialState = {
-  rooms: [],
+  assets: [],
   current: null,
   loading: false,
   error: null
@@ -17,14 +14,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_ROOMS:
-      console.log('Getting rooms now');
-      return { ...state, rooms: action.payload };
-    case FIND_ROOM:
-      return { ...state, current: action.payload };
-    case CLEAR_CURRENT:
-      return { ...state, current: null };
-    case ROOMS_ERROR:
+    case ASSETS_ERROR:
       console.log(action.payload);
       return {
         ...state,

@@ -6,7 +6,7 @@ import { getRooms } from '../../redux/actions/roomActions';
 import Header from '../../layout/Header';
 import RoomItem from './RoomItem';
 
-const RoomsList = ({ room: { rooms }, getRooms }) => {
+const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
   useEffect(() => {
     getRooms();
   }, []);
@@ -18,7 +18,9 @@ const RoomsList = ({ room: { rooms }, getRooms }) => {
         {!rooms && rooms.length === 0 ? (
           <Text>No rooms to show...</Text>
         ) : (
-          rooms.map(room => <RoomItem room={room} key={room.id} />)
+          rooms.map(room => (
+            <RoomItem navigation={navigation} room={room} key={room.id} />
+          ))
         )}
       </View>
     </View>
