@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity } from 'react-native';
 
+import Header from '../../layout/Header';
+import TicketItem from './TicketItem';
+
 const getTickets = (AssetId) => {
     return fetch('localhost/tickets')
         .then((response) => response.json())
@@ -12,24 +15,13 @@ const getTickets = (AssetId) => {
         })
 }
 
-function Ticket({ id, assetId, numberOfVotes, description }) {
-    return (
-        <TouchableOpacity>
-            <Text>{id}</Text>
-            <Text>{assetId}</Text>
-            <Text>{numberOfVotes}</Text>
-            <Text>{description}</Text>
-        </TouchableOpacity>
-    );
-}
-
-export default function TicketList() {
+const TicketList = () => {
     return (
         <View>
             <Header title="Tickets from AssetX" />
             <FlatList
                 data={getTickets(1)}
-                renderItem={({ ticket }) => <Ticket
+                renderItem={({ ticket }) => <TicketItem
                     id={ticket.id}
                     assetId={ticket.description}
                     numberOfVotes={ticket.numberOfVotes}
@@ -38,5 +30,7 @@ export default function TicketList() {
 
             </FlatList>
         </View>
-    )
+    );
 }
+
+export default TicketList;
