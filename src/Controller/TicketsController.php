@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
  * @package App\Controller
  * @Route("/tickets", name="tickets")
  */
-
 class TicketsController extends AbstractController
 {
 
@@ -27,10 +26,17 @@ class TicketsController extends AbstractController
      */
     public function index(Request $request, TicketModel $ticketModel)
     {
-       $tickets = $ticketModel->getAll();
+        $assetId = $request->get("assetId");
+        if ($assetId ) {
+            $ticketsOfAsset = $ticketModel->findTicketsOfAsset($assetId);
+            return new JsonResponse($ticketsOfAsset, 200);
+        }
 
-       return new JsonResponse($tickets, 200);
+        $tickets = $ticketModel->getAll();
+
+        return new JsonResponse($tickets, 200);
     }
+
 
     /**
      * @Route("/raiseVote", methods={"POST"})
@@ -39,15 +45,15 @@ class TicketsController extends AbstractController
      * @return JsonResponse|Response
      * @throws \App\IllegalStateException
      */
-    public function addOneVoteToTicket(Request $request, TicketModel $ticketModel){
+    public function addOneVoteToTicket(Request $request, TicketModel $ticketModel)
+    {
         $ticketId = $request->get("ticketId");
-        if($ticketId && ctype_digit($ticketId)){
-            try{
+        if ($ticketId && ctype_digit($ticketId)) {
+            try {
                 $ticketModel->addVoteToTicket($ticketId);
                 $ticket = $ticketModel->getTicketWithId($ticketId);
                 return new JsonResponse($ticket, 200);
-            }
-            catch (IllegalStateException $exception){
+            } catch (IllegalStateException $exception) {
                 return new Response($exception->getMessage(), 500);
             }
         }

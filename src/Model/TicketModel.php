@@ -22,8 +22,23 @@ class TicketModel
         $this->pdo = $pdoFactory->getPdo();
     }
 
-    public function getAll(){
+    public function getAll()
+    {
         $statement = $this->pdo->query("SELECT * FROM ticket;");
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $statement->execute();
+        $tickets = array();
+        while ($row = $statement->fetch()) {
+            $tickets[] = $this->mapDataToTicket($row);
+        }
+
+        return $tickets;
+    }
+
+    public function findTicketsOfAsset($assetId)
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM ticket WHERE assetId= :assetId;");
+        $statement->bindParam(":assetId", $assetId, PDO::PARAM_INT);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute();
         $tickets = array();
@@ -67,27 +82,28 @@ class TicketModel
         return $tickets;
     }
 
-    public function addVoteToTicket(int $ticketId){
+    public function addVoteToTicket(int $ticketId)
+    {
         try {
             $this->validateIdMoreThanZero($ticketId);
             $statement = $this->pdo->prepare("UPDATE ticket SET NumberOfVotes= NumberOfVotes + 1 WHERE Id=:id;");
             $statement->bindParam(":id", $ticketId, PDO::PARAM_INT);
             $statement->setFetchMode(PDO::FETCH_ASSOC);
             $statement->execute();
-        }
-        catch (\PDOException $exception){
+        } catch (\PDOException $exception) {
             $this->pdo->rollBack();
             throw new IllegalStateException("Cannot raise votes by one of ticket with id: " . $ticketId);
         }
     }
 
-    public function getTicketWithId(int $ticketId): Ticket{
+    public function getTicketWithId(int $ticketId): Ticket
+    {
         $this->validateIdMoreThanZero($ticketId);
         $statement = $this->pdo->prepare("SELECT * FROM ticket WHERE Id=:id;");
         $statement->bindParam(":id", $ticketId, PDO::PARAM_INT);
         $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute();
-        if($row = $statement->fetch()){
+        if ($row = $statement->fetch()) {
             $ticket = $this->mapDataToTicket($row);
 
             return $ticket;
@@ -96,7 +112,7 @@ class TicketModel
         throw new IllegalStateException("No ticket found with id of " . $ticketId);
     }
 
-    private function mapDataToTicket($data)
+    private function mapDataToTicket($data): Ticket
     {
         $ticket = new Ticket();
         $ticket->setId($data["id"]);
@@ -122,7 +138,7 @@ class TicketModel
 
     private function validateIdMoreThanZero(int $ticketId)
     {
-        if($ticketId <= 0){
+        if ($ticketId <= 0) {
             throw new IllegalStateException("Given Ticket Id should be more than 0 in order to raise the votes for a ticket!");
         }
     }

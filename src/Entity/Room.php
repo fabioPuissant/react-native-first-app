@@ -9,6 +9,24 @@ class Room
      public $id;
      public $name;
      public $happinessScore;
+     public $imageUrl;
+
+    /**
+     * @return mixed
+     */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * @param mixed $imageUrl
+     */
+    public function setImageUrl($imageUrl): void
+    {
+        $this->imageUrl = $imageUrl;
+    }
+
 
     /**
      * @return mixed
