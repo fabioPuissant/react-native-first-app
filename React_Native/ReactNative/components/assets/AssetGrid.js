@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { View, FlatList } from 'react-native';
 import { getTickets } from '../../redux/actions/ticketActions';
 import AssetItem from './AssetItem';
 
 const AssetGrid = ({ assets, navigation, ticket: { tickets }, getTickets }) => {
+  useEffect(() => {
+    getTickets();
+  }, []);
   return (
     <View>
       <FlatList
         data={assets}
         renderItem={itemData => {
-          getTickets();
           return (
             <AssetItem
               asset={itemData.item}
-              tickets={tickets}
+              tickets={tickets.filter(t => t.assetId === itemData.item.id)}
               navigation={navigation}
             />
           );
