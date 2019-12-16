@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { Button, Card, Title, Paragraph } from 'react-native-paper';
 
 const AssetItem = ({ tickets, asset, navigation }) => {
@@ -34,7 +34,22 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     margin: 15,
-    height: 150
+    height: 250,
+    backgroundColor: 'pink'
+  },
+  image: {
+    width: '100%',
+    height: '100%'
+  },
+  imgContainer: {
+    borderRadius: 150,
+    borderWidth: 3,
+    borderColor: 'black',
+    width: 75,
+    height: 75,
+    marginHorizontal: 15,
+    overflow: 'hidden',
+    marginVertical: 20
   }
 });
 
