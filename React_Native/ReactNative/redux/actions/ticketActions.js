@@ -23,6 +23,25 @@ export const getTickets = () => async dispatch => {
   }
 };
 
+export const getTicketsOfAsset = assetId => async dispatch => {
+  try {
+    const resp = await fetch(
+      `http://192.168.0.128:8000/tickets?assetId=${assetId}`
+    );
+    const data = await resp.json();
+
+    dispatch({
+      type: GET_TICKETS_OF_ASSET,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: TICKETS_ERROR,
+      payload: error
+    });
+  }
+};
+
 export const upVoteTicket = ticket => async dispatch => {
   try {
     const resp = await fetch(`${ticket}/raiseVote`, {

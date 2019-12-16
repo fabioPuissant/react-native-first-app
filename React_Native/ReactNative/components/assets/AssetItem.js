@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { getTickets } from '../../redux/actions/ticketActions';
 
-const AssetItem = ({ ticket: { tickets }, asset, navigation, getTickets }) => {
+const AssetItem = ({ tickets, asset, navigation, getTickets }) => {
   const [displayTickets, setDisplayTickets] = useState(null);
-  useEffect(() => {
-    getTickets(asset.id);
-  }, []);
 
   useEffect(() => {
     const filtered = tickets.filter(t => t.assetId === asset.id);

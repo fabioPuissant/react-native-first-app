@@ -1,16 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { View, FlatList } from 'react-native';
-
+import { getTickets } from '../../redux/actions/ticketActions';
 import AssetItem from './AssetItem';
 
-const AssetGrid = ({ assets, navigation, setCurrent }) => {
+const AssetGrid = ({ assets, navigation, ticket: { tickets }, getTickets }) => {
   return (
     <View>
       <FlatList
         data={assets}
         renderItem={itemData => {
-          return <AssetItem asset={itemData.item} navigation={navigation} />;
+          getTickets();
+          return (
+            <AssetItem
+              asset={itemData.item}
+              tickets={tickets}
+              navigation={navigation}
+            />
+          );
         }}
         numColumns={2}
         keyExtractor={(item, index) => {
@@ -21,7 +28,7 @@ const AssetGrid = ({ assets, navigation, setCurrent }) => {
   );
 };
 const mapStateToProps = state => ({
-  asset: state.asset
+  ticket: state.ticket
 });
 
-export default connect(mapStateToProps)(AssetGrid);
+export default connect(mapStateToProps, { getTickets })(AssetGrid);

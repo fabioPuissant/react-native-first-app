@@ -23,7 +23,7 @@ const RoomScreen = ({
 
   return (
     <View>
-      <Header title=' Rooms' navigation={navigation} />
+      <Header title={`Detail ${current.name}`} navigation={navigation} />
       {!assets && assets.length === 0 ? (
         <Text>No Assets found</Text>
       ) : (
