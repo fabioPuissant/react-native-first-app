@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, TouchableWithoutFeedback, Text } from 'react-native';
-import { connect } from 'react-redux';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import { getTickets } from '../../redux/actions/ticketActions';
+import { StyleSheet, View } from 'react-native';
+import { Button, Card, Title, Paragraph } from 'react-native-paper';
 
-const AssetItem = ({ tickets, asset, navigation, getTickets }) => {
+const AssetItem = ({ tickets, asset, navigation }) => {
   const [displayTickets, setDisplayTickets] = useState(null);
 
   useEffect(() => {
@@ -17,18 +15,18 @@ const AssetItem = ({ tickets, asset, navigation, getTickets }) => {
   };
 
   return (
-    <Card style={styles.item}>
+    <View style={styles.item}>
       <Card.Title title={'Asset: ' + asset.id} />
       <Card.Content>
-        <Title>{'name: ' + asset.name}</Title>
-        <Title>
-          {'tickets: ' + (displayTickets ? displayTickets.length : 0)}
-        </Title>
+        <Paragraph>{'Name: ' + asset.name}</Paragraph>
+        <Paragraph>
+          {'Tickets: ' + (displayTickets ? displayTickets.length : 0)}
+        </Paragraph>
       </Card.Content>
       <Card.Actions>
         <Button title='See Tickets' />
       </Card.Actions>
-    </Card>
+    </View>
   );
 };
 
@@ -39,7 +37,5 @@ const styles = StyleSheet.create({
     height: 150
   }
 });
-const mapStateToProps = state => ({
-  ticket: state.ticket
-});
-export default connect(mapStateToProps, { getTickets })(AssetItem);
+
+export default AssetItem;
