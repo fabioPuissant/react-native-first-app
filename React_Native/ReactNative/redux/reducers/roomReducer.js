@@ -2,8 +2,10 @@ import Room from '../../models/Room';
 import {
   GET_ROOMS,
   FIND_ROOM,
-  CLEAR_CURRENT,
-  SET_CURRENT,
+  CLEAR_CURRENT_ROOM,
+  SET_CURRENT_ROOM,
+  GET_ROOMS_HIGHER_OR_EQUAL_THAN,
+  GET_ROOMS_LOWER_THAN,
   ROOMS_ERROR,
   SET_LOADING
 } from '../constants/applicationConstants';
@@ -18,11 +20,10 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_ROOMS:
-      console.log('Getting rooms now');
       return { ...state, rooms: action.payload };
     case FIND_ROOM:
       return { ...state, current: action.payload };
-    case CLEAR_CURRENT:
+    case CLEAR_CURRENT_ROOM:
       return { ...state, current: null };
     case ROOMS_ERROR:
       console.log(action.payload);
@@ -30,16 +31,22 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload
       };
-    case SET_CURRENT:
+    case GET_ROOMS_LOWER_THAN:
+      return {
+        ...state,
+        rooms: state.rooms.filter(r => r.happinessScore <= action.payload)
+      };
+    case GET_ROOMS_HIGHER_OR_EQUAL_THAN:
+      return {
+        ...state,
+        rooms: state.rooms.filter(r => r.happinessScore >= action.payload)
+      };
+    case SET_CURRENT_ROOM:
       return {
         ...state,
         current: action.payload
       };
-    case CLEAR_CURRENT:
-      return {
-        ...state,
-        current: null
-      };
+
     case SET_LOADING:
       return {
         ...state,

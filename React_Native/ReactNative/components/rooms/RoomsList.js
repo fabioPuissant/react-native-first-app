@@ -1,29 +1,88 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View } from 'react-native';
+import SearchBarHappiness from '../../layout/SearchBarHappiness';
+import {
+  StyleSheet,
+  Text,
+  ScrollView,
+  View,
+  Alert,
+  Keyboard
+} from 'react-native';
 import { connect } from 'react-redux';
 import { getRooms } from '../../redux/actions/roomActions';
 import Header from '../../layout/Header';
 import RoomItem from './RoomItem';
 
 const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
+  const [enteredValue, setEnteredValue] = useState('');
+  const [confirmed, setConfirmed] = useState(true);
+  const [selectedNumber, setSelectedNumber] = useState(false);
+  const [displayRooms, setDisplayRooms] = useState([]);
   useEffect(() => {
-    getRooms();
+    setConfirmed(true);
   }, []);
 
+  useEffect(() => {
+    getRooms();
+    setDisplayRooms(rooms);
+  }, [confirmed]);
+
+  useEffect(() => {
+    getRooms();
+    setDisplayRooms(rooms);
+  }, []);
+
+  const numberInputHandler = inputText => {
+    setEnteredValue(inputText.replace(/[^0-9]/g, ''));
+  };
+
+  const resetInputHandler = () => {
+    setEnteredValue('');
+    setConfirmed(false);
+  };
+
+  const confirmInputHandler = () => {
+    const chosenNumber = parseInt(enteredValue);
+    if (isNaN(chosenNumber) || chosenNumber <= 0) {
+      Alert.alert(
+        'Invalid number',
+        'Number has to be a number greather than 0.',
+        [{ text: 'Ok', style: 'destructive', onPress: resetInputHandler }]
+      );
+      return;
+    }
+
+    setConfirmed(true);
+    setSelectedNumber(chosenNumber);
+    Keyboard.dismiss();
+  };
+
+  if (confirmed) {
+    const foundRooms = rooms.filter(r => r.happinessScore >= selectedNumber);
+    setDisplayRooms(foundRooms);
+    setConfirmed(false);
+  }
+
   return (
-    <View>
+    <ScrollView>
       <Header title='All Rooms' />
+      <SearchBarHappiness
+        placeholder='Search rooms with score greather than...'
+        numberInputHandler={numberInputHandler}
+        confirmInputHandler={confirmInputHandler}
+        enteredValue={enteredValue}
+      />
       <View style={styles.centerHoriz}>
-        {!rooms && rooms.length === 0 ? (
+        {!displayRooms && displayRooms.length === 0 ? (
           <Text>No rooms to show...</Text>
         ) : (
-          rooms.map(room => (
+          displayRooms.map(room => (
             <RoomItem navigation={navigation} room={room} key={room.id} />
           ))
         )}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -40,4 +99,6 @@ const mapStateToProps = state => ({
   room: state.room
 });
 
-export default connect(mapStateToProps, { getRooms })(RoomsList);
+export default connect(mapStateToProps, {
+  getRooms
+})(RoomsList);

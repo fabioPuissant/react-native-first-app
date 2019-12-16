@@ -1,8 +1,10 @@
 import {
   GET_ROOMS,
   FIND_ROOM,
-  CLEAR_CURRENT,
-  SET_CURRENT,
+  GET_ROOMS_LOWER_THAN,
+  CLEAR_CURRENT_ROOM,
+  SET_CURRENT_ROOM,
+  GET_ROOMS_HIGHER_OR_EQUAL_THAN,
   ROOMS_ERROR,
   SET_LOADING
 } from '../constants/applicationConstants';
@@ -15,7 +17,6 @@ export const getRooms = () => async dispatch => {
   try {
     let response = await fetch(url);
     let data = await response.json();
-    console.log(JSON.stringify(data));
     dispatch({
       type: GET_ROOMS,
       payload: data
@@ -46,10 +47,45 @@ export const findRoomByName = name => async dispatch => {
   }
 };
 
+// Find rooms with happiness lower or equal than
+export const findRoomWithHappinessLessThan = score => async dispatch => {
+  try {
+    // const response = await fetch(`${url}/happiness?lower_than=${score}`);
+    //  const data = await response.json();
+
+    dispatch({
+      type: GET_ROOMS_LOWER_THAN,
+      payload: score
+    });
+  } catch (error) {
+    dispatch({
+      type: ROOMS_ERROR,
+      payload: error
+    });
+  }
+};
+
+// Find rooms with happiness higher or equal than
+export const findRoomWithHappinessHigherThan = score => async dispatch => {
+  try {
+    // const response = await fetch(`${url}/happiness?lower_than=${score}`);
+    //  const data = await response.json();
+    dispatch({
+      type: GET_ROOMS_HIGHER_OR_EQUAL_THAN,
+      payload: score
+    });
+  } catch (error) {
+    dispatch({
+      type: ROOMS_ERROR,
+      payload: error
+    });
+  }
+};
+
 // Set current log
 export const setCurrentRoom = room => {
   return {
-    type: SET_CURRENT,
+    type: SET_CURRENT_ROOM,
     payload: room
   };
 };
@@ -57,7 +93,7 @@ export const setCurrentRoom = room => {
 // Clear current log
 export const clearCurrent = () => {
   return {
-    type: CLEAR_CURRENT
+    type: CLEAR_CURRENT_ROOM
   };
 };
 
