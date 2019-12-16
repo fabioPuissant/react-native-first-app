@@ -4,7 +4,11 @@ import { Appbar } from 'react-native-paper';
 const Header = props => {
   return (
     <Appbar.Header>
-      <Appbar.BackAction />
+      {props.navigation ? (
+        <Appbar.BackAction onPress={() => props.navigation.goBack()} />
+      ) : (
+        <Text></Text>
+      )}
       <Appbar.Content title={props.title} />
     </Appbar.Header>
   );

@@ -16,7 +16,7 @@ import RoomItem from './RoomItem';
 
 const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
   const [enteredValue, setEnteredValue] = useState('');
-  const [confirmed, setConfirmed] = useState(false);
+  const [confirmed, setConfirmed] = useState(true);
   const [selectedNumber, setSelectedNumber] = useState(false);
   const [displayRooms, setDisplayRooms] = useState([]);
 
@@ -52,7 +52,6 @@ const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
 
   if (confirmed) {
     const foundRooms = rooms.filter(r => r.happinessScore >= selectedNumber);
-    console.log(rooms);
     setDisplayRooms(foundRooms);
     setConfirmed(false);
   }

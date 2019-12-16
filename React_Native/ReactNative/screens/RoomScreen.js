@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Text, FlatList, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Header from '../layout/Header';
 
 import {
   setCurrentAsset,
@@ -10,6 +11,7 @@ import {
 } from '../redux/actions/assetActions';
 
 const RoomScreen = ({
+  navigation,
   room: { current },
   asset: { assets },
   clearCurrentAsset,
@@ -22,6 +24,7 @@ const RoomScreen = ({
 
   return (
     <View>
+      <Header title=' Rooms' navigation={navigation} />
       {!assets && assets.length === 0 ? (
         <Text>No Assets found</Text>
       ) : (
@@ -34,7 +37,9 @@ const RoomScreen = ({
     </View>
   );
 };
-
+RoomScreen.navigationOptions = {
+  headerTitle: 'Home screen'
+};
 RoomScreen.propTypes = {};
 
 const styles = StyleSheet.create({});
