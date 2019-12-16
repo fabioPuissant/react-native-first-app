@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Title, Paragraph } from 'react-native-paper';
 
 const AssetItem = ({ tickets, asset, navigation }) => {
   const [displayTickets, setDisplayTickets] = useState(null);
@@ -16,16 +16,25 @@ const AssetItem = ({ tickets, asset, navigation }) => {
 
   return (
     <View style={styles.item}>
-      <Card.Title title={'Asset: ' + asset.id} />
-      <Card.Content>
-        <Paragraph>{'Name: ' + asset.name}</Paragraph>
-        <Paragraph>
-          {'Tickets: ' + (displayTickets ? displayTickets.length : 0)}
-        </Paragraph>
-      </Card.Content>
-      <Card.Actions>
-        <Button title='See Tickets' />
-      </Card.Actions>
+      <View style={styles.imgContainer}>
+        <Image
+          fadeDuration={400}
+          //source={require('../assets/success.png')}
+          source={{
+            uri:
+              'https://images.pexels.com/photos/389818/pexels-photo-389818.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          }}
+          style={styles.image}
+          resizeMode='cover'
+        />
+      </View>
+
+      <Title>{asset.name}</Title>
+
+      <Paragraph>{'Id: ' + asset.id}</Paragraph>
+      <Paragraph>
+        {'Tickets: ' + (displayTickets ? displayTickets.length : 0)}
+      </Paragraph>
     </View>
   );
 };
@@ -35,7 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 15,
     height: 250,
-    backgroundColor: 'pink'
+    alignItems: 'center'
   },
   image: {
     width: '100%',
@@ -49,7 +58,9 @@ const styles = StyleSheet.create({
     height: 75,
     marginHorizontal: 15,
     overflow: 'hidden',
-    marginVertical: 20
+    marginVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
