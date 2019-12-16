@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Searchbar } from 'react-native-paper';
+import SearchBarHappiness from '../../layout/SearchBarHappiness';
 import {
   StyleSheet,
   Text,
@@ -19,6 +19,9 @@ const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
   const [confirmed, setConfirmed] = useState(true);
   const [selectedNumber, setSelectedNumber] = useState(false);
   const [displayRooms, setDisplayRooms] = useState([]);
+  useEffect(() => {
+    setConfirmed(true);
+  }, []);
 
   useEffect(() => {
     getRooms();
@@ -59,11 +62,11 @@ const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
   return (
     <ScrollView>
       <Header title='All Rooms' />
-      <Searchbar
+      <SearchBarHappiness
         placeholder='Search rooms with score greather than...'
-        onChangeText={numberInputHandler}
-        onSubmitEditing={confirmInputHandler}
-        value={enteredValue}
+        numberInputHandler={numberInputHandler}
+        confirmInputHandler={confirmInputHandler}
+        enteredValue={enteredValue}
       />
       <View style={styles.centerHoriz}>
         {!displayRooms && displayRooms.length === 0 ? (
