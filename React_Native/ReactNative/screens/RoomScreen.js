@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Text, FlatList, View, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import Header from '../layout/Header';
+import AssetGrid from '../components/assets/AssetGrid';
 
 import {
   setCurrentAsset,
@@ -14,8 +15,6 @@ const RoomScreen = ({
   navigation,
   room: { current },
   asset: { assets },
-  clearCurrentAsset,
-  setCurrentAsset,
   findAssetsOfRoom
 }) => {
   useEffect(() => {
@@ -28,11 +27,7 @@ const RoomScreen = ({
       {!assets && assets.length === 0 ? (
         <Text>No Assets found</Text>
       ) : (
-        assets.map(as => (
-          <Text key={as.id}>
-            {as.name} {as.roomId}
-          </Text>
-        ))
+        <AssetGrid assets={assets} navigation={navigation} />
       )}
     </View>
   );

@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, TouchableWithoutFeedback, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { getTickets } from '../../redux/actions/ticketActions';
 
-const AssetItem = props => {
+const AssetItem = ({ ticket: { tickets }, asset, navigation, getTickets }) => {
+  const [displayTickets, setDisplayTickets] = useState(null);
+  useEffect(() => {
+    getTickets(asset.id);
+  }, []);
+
+  useEffect(() => {
+    const filtered = tickets.filter(t => t.assetId === asset.id);
+    setDisplayTickets(filtered);
+  }, [tickets]);
+
   const handleAssetNavigation = () => {
-    props.navigation.navigate('');
+    navigation.navigate('AssetScreen');
   };
 
   return (
     <Card style={styles.item}>
-      <Card.Title title={'Asset: ' + props.asset.id} />
+      <Card.Title title={'Asset: ' + asset.id} />
       <Card.Content>
-        <Title>{'name: ' + props.asset.name}</Title>
+        <Title>{'name: ' + asset.name}</Title>
+        <Title>
+          {'tickets: ' + (displayTickets ? displayTickets.length : 0)}
+        </Title>
       </Card.Content>
       <Card.Actions>
-        <Button onPress={handleTicketNavigation} title='See Tickets' />
+        <Button title='See Tickets' />
       </Card.Actions>
     </Card>
   );
@@ -23,6 +37,12 @@ const AssetItem = props => {
 
 const styles = StyleSheet.create({
   item: {
-    marginVertical: 20
+    flex: 1,
+    margin: 15,
+    height: 150
   }
 });
+const mapStateToProps = state => ({
+  ticket: state.ticket
+});
+export default connect(mapStateToProps, { getTickets })(AssetItem);
