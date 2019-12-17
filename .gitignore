@@ -14,3 +14,4 @@ React_Native/ReactNative/.expo/web/cache
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+/src/util/

@@ -28,6 +28,11 @@ const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
     setDisplayRooms(rooms);
   }, [confirmed]);
 
+  useEffect(() => {
+    getRooms();
+    setDisplayRooms(rooms);
+  }, []);
+
   const numberInputHandler = inputText => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ''));
   };

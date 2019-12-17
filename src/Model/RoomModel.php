@@ -71,6 +71,7 @@ class RoomModel
         $room->setName($row["name"]);
         $room->setId($row["id"]);
         $room->setHappinessScore($row["happinessScore"]);
+        $room->setImageUrl($row["imageUrl"]);
 
         return $room;
     }

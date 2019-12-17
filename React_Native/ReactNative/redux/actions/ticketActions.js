@@ -6,16 +6,28 @@ import {
 
 import BASE_URL from '../constants/baseUrl';
 
-const ticketUrl = `${BASE_URL}/tickets`;
-const assetTicketUrl = `${BASE_URL}/assets?name=`;
-
-export const findTicketsOfAsset = asset => async dispatch => {
+export const getTickets = () => async dispatch => {
   try {
-    const specificUrl = `${assetTicketUrl}${asset.name}`;
-    console.log(
-      'TicketActions.findTicketsOfAsset: specificUrl= ' + specificUrl
+    const resp = await fetch(`http://192.168.0.114:8000/tickets`);
+    const data = await resp.json();
+
+    dispatch({
+      type: GET_TICKETS_OF_ASSET,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: TICKETS_ERROR,
+      payload: error
+    });
+  }
+};
+
+export const getTicketsOfAsset = assetId => async dispatch => {
+  try {
+    const resp = await fetch(
+      `http://192.168.0.114:8000/tickets?assetId=${assetId}`
     );
-    const resp = await fetch(specificUrl);
     const data = await resp.json();
 
     dispatch({
@@ -42,7 +54,6 @@ export const upVoteTicket = ticket => async dispatch => {
       }
     });
     const data = await resp.json();
-
     dispatch({
       type: UPVOTE_TICKET,
       payload: data
