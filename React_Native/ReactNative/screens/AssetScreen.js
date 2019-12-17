@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import Header from '../layout/Header';
 import SearchBarAssets from '../layout/SearchBarAssets';
+import { TextInput } from 'react-native-paper';
 
 
 const AssetScreen = props => {
@@ -28,7 +29,6 @@ const AssetScreen = props => {
         confirmInputHandler={confirmInputHandler}
         enteredValue={enteredValue}
       />
-
       <Text>AssetScreen</Text>
     </View>
   );
