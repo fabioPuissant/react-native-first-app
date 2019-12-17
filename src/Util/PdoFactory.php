@@ -8,8 +8,9 @@ class PdoFactory
 {
     private $pdo;
     private $user = "student";
-    private $password = "root";
-    private $host = "192.168.33.22:3306";
+    private $password = "root123";
+    // private $host = "192.168.10.11:3306";
+    private $host = "10.95.1.107:3306";
     private $dbName = "wp1DB";
 
     public function __construct()

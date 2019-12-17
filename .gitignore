@@ -6,6 +6,9 @@
 /public/bundles/
 /var/
 /vendor/
+/.idea
+src/Util/PdoFactory.php
+React_Native/ReactNative/.expo/web/cache
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###
