@@ -7,10 +7,10 @@ use PDO;
 class PdoFactory
 {
     private $pdo;
-    private $user = "student";
-    private $password = "root";
-    private $host = "192.168.33.22:3306";
-    private $dbName = "wp1DB";
+    private $user = "fabiorn408_student";
+    private $password = "root123";
+    private $host = "vserver408.axc.eu";
+    private $dbName = "fabiorn408_wp1DB";
 
     public function __construct()
     {
