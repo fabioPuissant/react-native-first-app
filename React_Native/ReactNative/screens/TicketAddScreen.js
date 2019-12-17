@@ -32,7 +32,6 @@ const TicketAddScreen = props => {
       text => setAssetId(text);
       setAssetIdValid = true;
     }
-
   }
 
   return (<View>
