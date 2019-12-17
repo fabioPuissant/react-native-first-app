@@ -4,11 +4,11 @@ import {
   UPVOTE_TICKET
 } from '../constants/applicationConstants';
 
-import BASE_URL from '../constants/baseUrl';
+import { BASE_URL } from '../constants/baseUrl';
 
 export const getTickets = () => async dispatch => {
   try {
-    const resp = await fetch(`http://192.168.0.114:8000/tickets`);
+    const resp = await fetch(`${BASE_URL}/tickets`);
     const data = await resp.json();
 
     dispatch({
@@ -26,7 +26,7 @@ export const getTickets = () => async dispatch => {
 export const getTicketsOfAsset = assetId => async dispatch => {
   try {
     const resp = await fetch(
-      `http://192.168.0.114:8000/tickets?assetId=${assetId}`
+      `${BASE_URL}/tickets?assetId=${assetId}`
     );
     const data = await resp.json();
 
