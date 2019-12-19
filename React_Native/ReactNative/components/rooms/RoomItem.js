@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Chip, withTheme, Button, Card } from 'react-native-paper';
 import { setCurrentRoom } from '../../redux/actions/roomActions';
@@ -14,8 +14,10 @@ const RoomItem = props => {
           subtitle={props.room.name}
         />
         <View style={styles.chipContainer}>
-          <Chip icon='information'>
-            {'Happiness Score: ' + props.room.happinessScore}
+          <Chip icon='information' mode='outlined' style={styles.whiteBg}>
+            <Text style={styles.greyText}>
+              {'Happiness Score: ' + props.room.happinessScore}
+            </Text>
           </Chip>
         </View>
       </View>
@@ -26,9 +28,7 @@ const RoomItem = props => {
             uri: props.room.imageUrl
           }}
         />
-      ) : (
-        <View></View>
-      )}
+      ) : null}
 
       <Card.Actions>
         <Button
@@ -57,6 +57,12 @@ const styles = StyleSheet.create({
     top: 5,
     right: 5,
     position: 'absolute'
+  },
+  greyText: {
+    color: 'grey'
+  },
+  whiteBg: {
+    backgroundColor: '#FFF'
   }
 });
 
