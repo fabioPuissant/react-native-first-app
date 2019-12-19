@@ -4,16 +4,6 @@ import { View, FlatList, TouchableOpacity } from 'react-native';
 import Header from '../../layout/Header';
 import TicketItem from './TicketItem';
 
-const getTickets = AssetId => {
-  return fetch('localhost/tickets')
-    .then(response => response.json())
-    .then(responseJson => {
-      return responseJson.find(ticket => ticket.assetId == assetId);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-};
 
 const TicketList = () => {
   return (
