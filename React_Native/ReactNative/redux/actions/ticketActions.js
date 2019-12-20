@@ -27,13 +27,9 @@ export const getTickets = () => async dispatch => {
 
 export const getTicketsOfAsset = assetId => async dispatch => {
   try {
-<<<<<<< HEAD
-    const resp = await fetch(`${url}?assetId=${assetId}`);
-=======
     const resp = await fetch(
       `${BASE_URL}/tickets?assetId=${assetId}`
     );
->>>>>>> 2a87eab94a62efd059d37098532805111c6cf391
     const data = await resp.json();
 
     dispatch({
