@@ -7,11 +7,11 @@ import { SearchBar } from 'react-native-paper';
 const SearchBarAssets = props => {
     return (
         <SearBar
-            placeholder="Search by ticket name"
-            onChangeText={props.ticketNameInputHandler}
+            placeholder="Search by asset name"
+            onChangeText={props.assetNameInputHandler}
             onSubmitEditing={props.confirmInputHandler}
             value={props.enteredValue} />
-    )
+    );
 };
 
 export default SearchBarAssets;
