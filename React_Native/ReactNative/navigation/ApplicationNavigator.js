@@ -1,4 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
 import Home from '../screens/Home';
 import RoomScreen from '../screens/RoomScreen';
@@ -21,4 +22,8 @@ const ApplicationNavigator = createStackNavigator(
   }
 );
 
-export default createAppContainer(ApplicationNavigator);
+const MainNavigator = createDrawerNavigator({
+  application: ApplicationNavigator
+});
+
+export default createAppContainer(MainNavigator);

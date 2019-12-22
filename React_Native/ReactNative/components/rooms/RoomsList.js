@@ -81,10 +81,10 @@ const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
         {!displayRooms && displayRooms.length === 0 ? (
           <Text>No rooms to show...</Text>
         ) : (
-          displayRooms.map(room => (
-            <RoomItem navigation={navigation} room={room} key={room.id} />
-          ))
-        )}
+            displayRooms.map(room => (
+              <RoomItem navigation={navigation} room={room} key={room.id} />
+            ))
+          )}
       </View>
     </ScrollView>
   );

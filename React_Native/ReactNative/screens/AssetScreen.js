@@ -1,43 +1,40 @@
-import React, { useEffect } from 'react';
-import { Text, FlatList, View, StyleSheet, Keyboard } from 'react-native';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
-
-import Header from '../layout/Header';
 import SearchBarAssets from '../layout/SearchBarAssets';
-import { TextInput } from 'react-native-paper';
-
+import AssetGridLess from '../components/assets/AssetGridLess';
 
 const AssetScreen = props => {
-  const [confirmed, setConfirmed] = useState(true);
+  const [enteredValue, setEnteredValue] = useState('');
+
+  const assetNameInputHandler = text => {
+    setEnteredValue(text);
+  };
 
   const confirmInputHandler = () => {
-    const ticketName = enteredValue;
-    setConfirmed(true);
-    Keyboard.dismiss();
-  }
-
-  if (confirmed) {
-    fetch()
-  }
+    const foundAssets = enteredValue;
+  };
 
   return (
     <View>
-      <Header navigation={props.navigation} title={'Hello assert screen'} />
-      <SearchBarAssets
-        ticketNameInputHandler={ticketNameInputHandler}
+      {/* <SearchBarAssets
+        placeholder="search for assets by name"
+        assetNameInputHandler={assetNameInputHandler}
         confirmInputHandler={confirmInputHandler}
         enteredValue={enteredValue}
-      />
-      <Text>AssetScreen</Text>
+      /> */}
+      <AssetGridLess />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-
+  text: {
+    fontSize: 40
+  }
 });
 
-AssetScreen.propTypes = {};
+//AssetScreen.propTypes = {};
 
-export default connect(null, {})(AssetScreen);
+export default AssetScreen;
+//export default connect(null, {})(AssetScreen);
