@@ -15,15 +15,9 @@ import colors from '../constants/Colors';
 
 const MainNavigator = createDrawerNavigator(
   {
-    HomeScreen: {
-      screen: Home
-    },
-    RoomScreen: {
-      screen: RoomScreen
-    },
-    TicketAddScreen: TicketAddScreen,
-    AssetScreen: AssetScreen,
-    TicketScreen: TicketScreen
+    Home: Home,
+    Assets: AssetScreen,
+    Tickets: TicketScreen
   },
   {
     navigationOptions: ({ navigation }) => ({
