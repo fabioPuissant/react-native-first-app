@@ -5,7 +5,6 @@ import {
   SET_CURRENT_ASSET,
   GET_ASSETS_OF_ROOM
 } from '../constants/applicationConstants';
-import { Asset } from 'react-native-unimodules';
 
 const initialState = {
   assets: [],

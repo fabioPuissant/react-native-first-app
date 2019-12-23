@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Title, Paragraph, Card, Button } from 'react-native-paper';
 
-const AssetItem = ({ tickets, asset, navigation, index }) => {
+import {
+  setCurrentAsset,
+  findAssetsOfRoom,
+  clearCurrentAsset
+} from '../../redux/actions/assetActions';
+
+const AssetItem = ({ tickets, asset, navigation, index, setCurrentAsset }) => {
   const [displayTickets, setDisplayTickets] = useState(null);
 
   useEffect(() => {
@@ -11,6 +17,7 @@ const AssetItem = ({ tickets, asset, navigation, index }) => {
   }, [tickets]);
 
   const handleAssetNavigation = () => {
+    setCurrentAsset(asset);
     navigation.navigate('AssetScreen');
   };
 
@@ -35,13 +42,16 @@ const AssetItem = ({ tickets, asset, navigation, index }) => {
           {'Tickets: ' + (displayTickets ? displayTickets.length : 0)}
         </Paragraph>
       </View>
-      <Button
-        mode={'contained'}
-        labelStyle={styles.ticketButton}
-        compact={true}
-      >
-        See tickets
+      <Card.Actions>
+        <Button
+          mode={'contained'}
+          labelStyle={styles.ticketButton}
+          compact={true}
+          onPress={handleAssetNavigation}
+        >
+          See tickets
       </Button>
+      </Card.Actions>
     </Card>
   );
 };

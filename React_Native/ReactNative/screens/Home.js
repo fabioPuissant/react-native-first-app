@@ -5,7 +5,7 @@ import RoomScreen from '../screens/RoomScreen';
 import TicketAddScreen from '../screens/TicketAddScreen';
 
 const Home = props => {
-  return <TicketAddScreen navigation={props.navigation} />;
+  return <RoomsList navigation={props.navigation} />;
 };
 
 const styles = StyleSheet.create({});

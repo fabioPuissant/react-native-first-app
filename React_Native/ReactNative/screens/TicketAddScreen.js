@@ -13,11 +13,11 @@ const TicketAddScreen = props => {
   const [value, setValue] = useState('')
   return (
     <View>
-      <SearchBarAssets
-        confirmInputHandler={confirmInputHandler}
+      {/* <SearchBarAssets
+        // confirmInputHandler={confirmInputHandler}
         assetNameInputHandler={text => setValue(text)}
         enteredValue={value}
-      />
+      /> */}
       <AddTicket />
     </View>
   );

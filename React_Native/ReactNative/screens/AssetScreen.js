@@ -1,43 +1,62 @@
-import React, { useEffect } from 'react';
-import { Text, FlatList, View, StyleSheet, Keyboard } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, FlatList,Image ,View, StyleSheet, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Header from '../layout/Header';
 import SearchBarAssets from '../layout/SearchBarAssets';
-import { TextInput } from 'react-native-paper';
+import { TextInput, Banner, Button, Title } from 'react-native-paper';
+import TicketList from '../components/tickets/TicketList';
 
+import {
+  getTickets,
+  getTicketsOfAsset,
+  upVoteTicket
+} from '../redux/actions/ticketActions';
 
-const AssetScreen = props => {
-  const [confirmed, setConfirmed] = useState(true);
+import {
+  setCurrentAsset,
+  findAssetsOfRoom,
+  clearCurrentAsset
+} from '../redux/actions/assetActions';
 
-  const confirmInputHandler = () => {
-    const ticketName = enteredValue;
-    setConfirmed(true);
-    Keyboard.dismiss();
-  }
-
-  if (confirmed) {
-    fetch()
-  }
+const AssetScreen = ({
+  navigation,
+  asset: { current },
+  ticket: { tickets },
+  getTicketsOfAsset
+}) => {
+  useEffect(() => {
+    getTicketsOfAsset(current);
+  }, []);
 
   return (
     <View>
-      <Header navigation={props.navigation} title={'Hello assert screen'} />
-      <SearchBarAssets
-        ticketNameInputHandler={ticketNameInputHandler}
-        confirmInputHandler={confirmInputHandler}
-        enteredValue={enteredValue}
-      />
-      <Text>AssetScreen</Text>
+      <Header navigation={navigation} title={'Asset screen'} />
+      <TicketList asset={current} navigation={navigation} tickets={tickets}/>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-
-});
-
+AssetScreen.navigationOptions = {
+  headerTitle: 'Asset screen'
+};
 AssetScreen.propTypes = {};
 
-export default connect(null, {})(AssetScreen);
+const styles = StyleSheet.create({
+  flex: { flex: 1 },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  purpleText: {
+    color: '#5E00EA'
+  }
+});
+
+const mapStateToProps = state => ({
+  asset: state.asset,
+  ticket: state.ticket
+});
+
+export default connect(mapStateToProps, {setCurrentAsset, getTicketsOfAsset})(AssetScreen);
