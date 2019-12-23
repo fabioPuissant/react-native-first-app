@@ -1,17 +1,20 @@
-import React from 'react';
-import { View, FlatList, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, FlatList } from 'react-native';
 
-import Header from '../../layout/Header';
 import TicketItem from './TicketItem';
+import { connect } from 'react-redux';
+import { getTickets } from '../../redux/actions/ticketActions';
 
 
-const TicketList = () => {
+const TicketList = ({ ticket: { tickets }, getTickets }) => {
+  useEffect(() => {
+    getTickets();
+  }, []);
   return (
     <View>
-      <Header title='Tickets from AssetX' />
       <FlatList
-        data={getTickets(1)}
-        renderItem={({ ticket }) => (
+        data={tickets}
+        renderItem={(ticket) => (
           <TicketItem
             id={ticket.id}
             assetId={ticket.description}
@@ -25,4 +28,10 @@ const TicketList = () => {
   );
 };
 
-export default TicketList;
+const mapStateToProps = state => ({
+  ticket: state.ticket
+})
+
+export default connect(mapStateToProps, {
+  getTickets
+})(TicketList);

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, TouchableWithoutFeedback, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
 const TicketItem = props => {
 
-    const handleTicketNavigation = () => {
-        props.navigation.navigate('')
+    const [upvotes, setUpvotes] = useState("");
+
+    const upvoteHandler = () => {
+
     }
 
     return (
@@ -18,9 +20,15 @@ const TicketItem = props => {
             </Card.Content>
             <Card.Actions>
                 <Button
-                    onPress={handleTicketNavigation}
-                    title="See Tickets" />
+                    onPress={upvoteHandler}
+                    title="Upvote" />
             </Card.Actions>
         </Card>
     );
 }
+
+const styles = StyleSheet.create({
+
+});
+
+export default TicketItem;

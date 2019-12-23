@@ -5,6 +5,9 @@ import { Banner, Button, Title } from 'react-native-paper';
 import { connect } from 'react-redux';
 import Header from '../layout/Header';
 import AssetGrid from '../components/assets/AssetGrid';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../components/HeaderButton';
+
 
 import {
   setCurrentAsset,
@@ -73,20 +76,27 @@ const RoomScreen = ({
             These are the assets of this room
           </Title>
         ) : (
-          <Title style={styles.purpleText}>This room has no assets</Title>
-        )}
+            <Title style={styles.purpleText}>This room has no assets</Title>
+          )}
       </View>
 
       {!assets && assets.length === 0 ? (
         <Text>No Assets found</Text>
       ) : (
-        <AssetGrid assets={assets} navigation={navigation} />
-      )}
+          <AssetGrid assets={assets} navigation={navigation} />
+        )}
     </View>
   );
 };
-RoomScreen.navigationOptions = {
-  headerTitle: 'Home screen'
+RoomScreen.navigationOptions = navData => {
+  return {
+    headerTitle: 'Rooms',
+    headerLeft: (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+      <Item title="menu" iconName="ios-menu" onPress={() => {
+        navData.navigation.toggleDrawer();
+      }} />
+    </HeaderButtons>)
+  };
 };
 RoomScreen.propTypes = {};
 
