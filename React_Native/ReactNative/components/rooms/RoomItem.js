@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Chip, withTheme, Button, Card } from 'react-native-paper';
-import { setCurrentRoom } from '../../redux/actions/roomActions';
+import { clearCurrent, setCurrentRoom } from '../../redux/actions/roomActions';
 
 const RoomItem = props => {
   const { colors } = props.theme;
@@ -33,6 +33,7 @@ const RoomItem = props => {
       <Card.Actions>
         <Button
           onPress={() => {
+            props.clearCurrent();
             props.setCurrentRoom(props.room);
             props.navigation.navigate('RoomScreen');
           }}
@@ -66,4 +67,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, { setCurrentRoom })(withTheme(RoomItem));
+export default connect(null, { clearCurrent, setCurrentRoom })(withTheme(RoomItem));

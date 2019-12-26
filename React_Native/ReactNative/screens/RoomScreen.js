@@ -24,9 +24,7 @@ const RoomScreen = ({
   const [show, setShow] = useState(true);
   const [dialogShow, setDialogShow] = useState(false);
 
-  useEffect(() => {
-    findAssetsOfRoom(current);
-  }, []);
+  findAssetsOfRoom(current);
 
   return (
     <View style={{ flex: 1 }}>
