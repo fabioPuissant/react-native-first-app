@@ -5,7 +5,7 @@ const Header = props => {
   return (
     <Appbar.Header>
       {props.navigation ? (
-        <Appbar.BackAction onPress={() => props.navigation.pop()} />
+        <Appbar.BackAction onPress={() => props.navigation.goBack()} />
       ) : (
         <Text></Text>
       )}
