@@ -57,9 +57,7 @@ const AssetItem = ({ tickets, asset, navigation, index, setCurrentAsset }) => {
 };
 
 const styles = StyleSheet.create({
-  even: {
-    bottom: 20
-  },
+  even: {},
   whiteText: {
     color: '#FFF'
   },
