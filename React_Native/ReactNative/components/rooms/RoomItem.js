@@ -33,7 +33,6 @@ const RoomItem = props => {
       <Card.Actions>
         <Button
           onPress={() => {
-            props.clearCurrent();
             props.setCurrentRoom(props.room);
             props.navigation.navigate('Rooms');
           }}
