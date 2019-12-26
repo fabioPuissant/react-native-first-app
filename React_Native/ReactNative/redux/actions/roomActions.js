@@ -6,7 +6,8 @@ import {
   SET_CURRENT_ROOM,
   GET_ROOMS_HIGHER_OR_EQUAL_THAN,
   ROOMS_ERROR,
-  SET_LOADING
+  SET_LOADING,
+  ADD_HAPPINESS
 } from '../constants/applicationConstants';
 
 import { BASE_URL } from '../constants/baseUrl';
@@ -19,6 +20,35 @@ export const getRooms = () => async dispatch => {
     let data = await response.json();
     dispatch({
       type: GET_ROOMS,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: ROOMS_ERROR,
+      payload: error
+    });
+  }
+};
+
+export const addHapinessScore = prop => async dispatch => {
+  try {
+    const postUrl = `${url}/addHapiness?name=${prop.roomName}&score=${prop.score}`;
+    const resp = await fetch(postUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(prop)
+    });
+
+    const data = await resp.json();
+
+    dispatch({
+      type: ADD_HAPPINESS,
+      payload: data
+    });
+    dispatch({
+      type: SET_CURRENT_ROOM,
       payload: data
     });
   } catch (error) {
