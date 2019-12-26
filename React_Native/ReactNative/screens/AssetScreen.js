@@ -37,12 +37,7 @@ const AssetScreen = ({
   };
 
   useEffect(() => {
-    console.log("AssetScreen")
-    console.log(current)
     getTicketsOfAsset(current);
-    console.log("tickets")
-    console.log(tickets)
-
   }, []);
 
   return (

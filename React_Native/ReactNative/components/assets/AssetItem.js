@@ -13,15 +13,7 @@ const AssetItem = ({ tickets, asset, assetState: { current }, navigation, index,
   }, [tickets]);
 
   const handleAssetNavigation = () => {
-    console.log("1 current")
-    console.log(current)
     setCurrentAsset(asset);
-    console.log("2 current")
-    console.log(current)
-
-    console.log("3 asset")
-    console.log(asset)
-    console.log("Clicked")
     navigation.navigate('AssetScreen');
   };
 

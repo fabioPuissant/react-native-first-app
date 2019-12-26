@@ -10,23 +10,8 @@ import { getTickets } from '../../redux/actions/ticketActions';
 
 const TicketList = ({ asset: { current }, currentAsset, navigation, ticket: { allTickets }, getTicketsOfAsset }) => {
   useEffect(() => {
-    console.log("5 current")
-    console.log(currentAsset)
     getTickets();
-    let newTickets = allTickets.filter(t => t.assetId === currentAsset.id)
-
-    console.log(allTickets)
-    console.log(currentAsset)
-    console.log("--------new tickets")
-
-    console.log(newTickets)
   }, []);
-
-  console.log("4 tickets")
-  console.log(JSON.stringify(allTickets))
-
-
-
 
   return (
     <View>
