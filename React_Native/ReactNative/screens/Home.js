@@ -7,7 +7,7 @@ import AssetScreen from '../screens/AssetScreen';
 import TicketScreen from '../screens/TicketScreen';
 
 const Home = props => {
-  return <TicketAddScreen navigation={props.navigation} />;
+  return <RoomsList navigation={props.navigation} />;
 };
 
 const styles = StyleSheet.create({});

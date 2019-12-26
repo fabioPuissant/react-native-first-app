@@ -17,26 +17,34 @@ const MainNavigator = createDrawerNavigator(
   {
     Home: Home,
     Assets: AssetScreen,
-    Tickets: TicketScreen
+    Tickets: TicketScreen,
+    RoomScreen: RoomScreen
   },
   {
     navigationOptions: ({ navigation }) => ({
       headerTitle: 'Rooms Management App',
-      headerLeft:
-        (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item title="menu" iconName="ios-menu" onPress={() => {
-            navigation.toggleDrawer();
-          }} />
-        </HeaderButtons>),
+      headerLeft: (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title='menu'
+            iconName='ios-menu'
+            onPress={() => {
+              navigation.toggleDrawer();
+            }}
+          />
+        </HeaderButtons>
+      ),
       headerStyle: {
         backgroundColor: colors.primaryColor
       },
       headerTintColor: 'white',
-      headerVisible: true,
+      headerVisible: true
     })
   }
 );
 
-const ApplicationNavigator = createStackNavigator({ RootStack: { screen: MainNavigator } })
+const ApplicationNavigator = createStackNavigator({
+  RootStack: { screen: MainNavigator }
+});
 
 export default createAppContainer(ApplicationNavigator);

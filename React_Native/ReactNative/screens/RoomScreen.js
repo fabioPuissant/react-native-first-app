@@ -7,7 +7,7 @@ import Header from '../layout/Header';
 import AssetGrid from '../components/assets/AssetGrid';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
-
+import AddHappinessScoreDialog from './dialog/AddHappinessScoreDialog';
 
 import {
   setCurrentAsset,
@@ -22,6 +22,8 @@ const RoomScreen = ({
   findAssetsOfRoom
 }) => {
   const [show, setShow] = useState(true);
+  const [dialogShow, setDialogShow] = useState(false);
+
   useEffect(() => {
     findAssetsOfRoom(current);
   }, []);
@@ -39,12 +41,18 @@ const RoomScreen = ({
           style={{ marginBottom: 10 }}
           actions={[
             {
-              label: 'Hide',
-              onPress: () => setShow(false)
+              label: 'Add happiness',
+              onPress: () => setDialogShow(true)
             },
+
             {
               label: ''
             },
+            {
+              label: 'Hide',
+              onPress: () => setShow(false)
+            },
+
             {
               label: ''
             }
@@ -70,32 +78,43 @@ const RoomScreen = ({
           </Text>
         </Banner>
       ) : null}
+
       <View style={styles.center}>
         {assets && assets.length !== 0 ? (
           <Title style={styles.purpleText}>
             These are the assets of this room
           </Title>
         ) : (
-            <Title style={styles.purpleText}>This room has no assets</Title>
-          )}
+          <Title style={styles.purpleText}>This room has no assets</Title>
+        )}
       </View>
+      <AddHappinessScoreDialog
+        dialogShow={dialogShow}
+        setDialogShow={setDialogShow}
+      />
 
       {!assets && assets.length === 0 ? (
         <Text>No Assets found</Text>
       ) : (
-          <AssetGrid assets={assets} navigation={navigation} />
-        )}
+        <AssetGrid assets={assets} navigation={navigation} />
+      )}
     </View>
   );
 };
 RoomScreen.navigationOptions = navData => {
   return {
     headerTitle: 'Rooms',
-    headerLeft: (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="menu" iconName="ios-menu" onPress={() => {
-        navData.navigation.toggleDrawer();
-      }} />
-    </HeaderButtons>)
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title='menu'
+          iconName='ios-menu'
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    )
   };
 };
 RoomScreen.propTypes = {};
