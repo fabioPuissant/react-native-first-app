@@ -4,6 +4,9 @@
 > 2. in '.env' je huidig ip-address van je host (laptop) toevoegen
 >    voorbeeld: CORS_ALLOW_ORIGIN=^https?://(localhost|192\.168\.0\.114)(:[0-9]+)?\$
 >
+> Om Mysql database aan te passen:
+> mysql -u student -p wp1DB < wp1DB.sql
+>
 > In src/util/PdoFactory.php moet je jou specifieke database gegevens toevoegen, dus de connection, username en passwoord.
 >
 > Om de php server te runnen voer je volgend commando uit:

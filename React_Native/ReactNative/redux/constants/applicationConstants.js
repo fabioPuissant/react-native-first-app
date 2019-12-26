@@ -18,6 +18,7 @@ export const ADD_TICKET_TO_ASSET = 'ADD_TICKET_TO_ASSET';
 
 // Ticket
 export const GET_TICKETS_OF_ASSET = 'GET_TICKETS_OF_ASSET';
+export const GET_TICKETS = 'GET_TICKETS';
 export const UPVOTE_TICKET = 'UPVOTE_TICKET';
 export const TICKETS_ERROR = 'TICKETS_ERROR';
 export const DELETE_TICKET = 'DELETE_TICKET';

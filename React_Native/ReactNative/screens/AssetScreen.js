@@ -1,10 +1,31 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Image, View, StyleSheet, Keyboard, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SearchBarAssets from '../layout/SearchBarAssets';
+import { TextInput, Banner, Button, Title } from 'react-native-paper';
+import TicketList from '../components/tickets/TicketList';
 import AssetGridLess from '../components/assets/AssetGridLess';
 
-const AssetScreen = props => {
+import {
+  getTickets,
+  getTicketsOfAsset,
+  upVoteTicket
+} from '../redux/actions/ticketActions';
+
+import {
+  setCurrentAsset,
+  findAssetsOfRoom,
+  clearCurrentAsset
+} from '../redux/actions/assetActions';
+
+const AssetScreen = ({
+  navigation,
+  asset: { current },
+  ticket: { tickets },
+  getTicketsOfAsset
+}) => {
+
   const [enteredValue, setEnteredValue] = useState('');
 
   const assetNameInputHandler = text => {
@@ -15,26 +36,43 @@ const AssetScreen = props => {
     const foundAssets = enteredValue;
   };
 
+  useEffect(() => {
+    getTicketsOfAsset(current);
+  }, []);
+
   return (
     <View>
+      <TicketList currentAsset={current} navigation={navigation} tickets={tickets} />
       {/* <SearchBarAssets
         placeholder="search for assets by name"
         assetNameInputHandler={assetNameInputHandler}
         confirmInputHandler={confirmInputHandler}
         enteredValue={enteredValue}
       /> */}
-      <AssetGridLess />
+      {/* <AssetGridLess /> */}
     </View>
   );
 };
 
+AssetScreen.navigationOptions = {
+  headerTitle: 'Asset screen'
+};
+AssetScreen.propTypes = {};
+
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 40
+  flex: { flex: 1 },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  purpleText: {
+    color: '#5E00EA'
   }
 });
 
-//AssetScreen.propTypes = {};
+const mapStateToProps = state => ({
+  asset: state.asset,
+  ticket: state.ticket
+});
 
-export default AssetScreen;
-//export default connect(null, {})(AssetScreen);
+export default connect(mapStateToProps, { setCurrentAsset, getTicketsOfAsset })(AssetScreen);

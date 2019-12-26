@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Title, Paragraph, Card, Button } from 'react-native-paper';
+import { connect } from 'react-redux';
+import { setCurrentAsset } from '../../redux/actions/assetActions';
 
-const AssetItem = ({ tickets, asset, navigation, index }) => {
+const AssetItem = ({ tickets, asset, assetState: { current }, navigation, index, setCurrentAsset }) => {
   const [displayTickets, setDisplayTickets] = useState(null);
 
   useEffect(() => {
@@ -11,7 +13,8 @@ const AssetItem = ({ tickets, asset, navigation, index }) => {
   }, [tickets]);
 
   const handleAssetNavigation = () => {
-    navigation.navigate('AssetScreen');
+    setCurrentAsset(asset);
+    navigation.navigate('Assets');
   };
 
   return (
@@ -35,13 +38,16 @@ const AssetItem = ({ tickets, asset, navigation, index }) => {
           {'Tickets: ' + (displayTickets ? displayTickets.length : 0)}
         </Paragraph>
       </View>
-      <Button
-        mode={'contained'}
-        labelStyle={styles.ticketButton}
-        compact={true}
-      >
-        See tickets
+      <Card.Actions>
+        <Button
+          mode={'contained'}
+          labelStyle={styles.ticketButton}
+          compact={true}
+          onPress={handleAssetNavigation}
+        >
+          See tickets
       </Button>
+      </Card.Actions>
     </Card>
   );
 };
@@ -90,4 +96,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AssetItem;
+const mapStateToProps = state => ({
+  ticket: state.ticket,
+  assetState: state.asset
+});
+
+export default connect(mapStateToProps, {
+  setCurrentAsset
+})(AssetItem);;

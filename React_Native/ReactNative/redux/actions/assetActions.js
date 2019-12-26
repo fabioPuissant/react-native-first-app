@@ -2,7 +2,7 @@ import {
   GET_ASSETS_OF_ROOM,
   CLEAR_CURRENT_ASSET,
   SET_CURRENT_ASSET,
-  ASSET_ERROR,
+  ASSETS_ERROR,
   SET_LOADING
 } from '../constants/applicationConstants';
 
@@ -24,7 +24,7 @@ export const findAssetsOfRoom = room => async dispatch => {
     });
   } catch (error) {
     dispatch({
-      type: ASSET_ERROR,
+      type: ASSETS_ERROR,
       payload: error
     });
   }

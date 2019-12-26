@@ -1,6 +1,7 @@
 import {
   TICKETS_ERROR,
   GET_TICKETS_OF_ASSET,
+  GET_TICKETS,
   UPVOTE_TICKET
 } from '../constants/applicationConstants';
 
@@ -14,7 +15,7 @@ export const getTickets = () => async dispatch => {
     const data = await resp.json();
 
     dispatch({
-      type: GET_TICKETS_OF_ASSET,
+      type: GET_TICKETS,
       payload: data
     });
   } catch (error) {

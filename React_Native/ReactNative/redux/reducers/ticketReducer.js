@@ -1,11 +1,13 @@
 import {
   TICKETS_ERROR,
   GET_TICKETS_OF_ASSET,
+  GET_TICKETS,
   UPVOTE_TICKET
 } from '../constants/applicationConstants';
 
 const initialState = {
   tickets: [],
+  allTickets: [],
   current: null,
   loading: false,
   error: null
@@ -17,6 +19,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         tickets: action.payload
+      };
+    case GET_TICKETS:
+      return {
+        ...state,
+        allTickets: action.payload
       };
     case UPVOTE_TICKET:
       const ticket = action.payload;

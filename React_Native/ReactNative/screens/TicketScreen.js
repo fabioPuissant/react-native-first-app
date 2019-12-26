@@ -1,19 +1,27 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import TicketList from '../components/tickets/TicketList';
+import React, { useEffect } from 'react';
+import { Text, FlatList, View, StyleSheet, Keyboard } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import Header from '../layout/Header';
+import { TextInput } from 'react-native-paper';
+
 
 const TicketScreen = props => {
 
-    return (
-        <View>
-            <TicketList />
-        </View>
-    );
+  return (
+    <View>
+      <Header navigation={props.navigation} title={'Hello ticket screen'} />
+      
+      <Text>TicketScreen</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
 
 });
 
-export default TicketScreen;
+TicketScreen.propTypes = {};
+
+export default connect(null, {})(TicketScreen);

@@ -18,7 +18,7 @@ const MainNavigator = createDrawerNavigator(
     Home: Home,
     Assets: AssetScreen,
     Tickets: TicketScreen,
-    RoomScreen: RoomScreen
+    Rooms: RoomScreen
   },
   {
     navigationOptions: ({ navigation }) => ({

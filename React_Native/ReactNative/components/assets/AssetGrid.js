@@ -4,13 +4,19 @@ import { View, FlatList, SafeAreaView, StyleSheet } from 'react-native';
 import { getTickets } from '../../redux/actions/ticketActions';
 import AssetItem from './AssetItem';
 
-const AssetGrid = ({ assets, navigation, ticket: { tickets }, getTickets }) => {
+import {
+  setCurrentAsset,
+  findAssetsOfRoom,
+  clearCurrentAsset
+} from '../../redux/actions/assetActions';
+
+const AssetGrid = ({ assets, navigation, ticket: { allTickets }, getTickets }) => {
   useEffect(() => {
     getTickets();
   }, []);
   return (
     <FlatList
-      style={[styles.container]}
+      style={styles.container}
       data={assets}
       renderItem={itemData => {
         return (
@@ -18,8 +24,9 @@ const AssetGrid = ({ assets, navigation, ticket: { tickets }, getTickets }) => {
             key={itemData.id}
             index={itemData.index}
             asset={itemData.item}
-            tickets={tickets.filter(t => t.assetId === itemData.item.id)}
+            tickets={allTickets.filter(t => t.assetId === itemData.item.id)}
             navigation={navigation}
+            setCurrentAsset={setCurrentAsset}
           />
         );
       }}
@@ -36,4 +43,4 @@ const mapStateToProps = state => ({
   ticket: state.ticket
 });
 
-export default connect(mapStateToProps, { getTickets })(AssetGrid);
+export default connect(mapStateToProps, { getTickets, setCurrentAsset })(AssetGrid);
