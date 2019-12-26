@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, Platform, StyleSheet, TextInput } from 'react-native';
 import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 
 const AddHappinessScoreDialog = props => {
@@ -15,6 +15,13 @@ const AddHappinessScoreDialog = props => {
           <Dialog.Title>Alert</Dialog.Title>
           <Dialog.Content>
             <Paragraph>This is simple dialog</Paragraph>
+            <TextInput
+              placeholder='Enter a happiness score for this room.'
+              underlineColorAndroid='transparent'
+              numeric
+              value
+              keyboardType={'number-pad'}
+            />
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={() => props.setDialogShow(false)}>Done</Button>

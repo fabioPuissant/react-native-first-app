@@ -8,6 +8,7 @@ const SearchBarHappiness = props => {
       onChangeText={props.numberInputHandler}
       onSubmitEditing={props.confirmInputHandler}
       value={props.enteredValue}
+      keyboardType={'number-pad'}
     />
   );
 };
