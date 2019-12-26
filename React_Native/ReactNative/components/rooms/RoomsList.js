@@ -17,7 +17,7 @@ import { getRooms } from '../../redux/actions/roomActions';
 import Header from '../../layout/Header';
 import RoomItem from './RoomItem';
 
-const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
+const RoomsList = ({ room: { rooms, current }, navigation, getRooms }) => {
   const [enteredValue, setEnteredValue] = useState('');
   const [confirmed, setConfirmed] = useState(true);
   const [selectedNumber, setSelectedNumber] = useState(false);
@@ -36,6 +36,11 @@ const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
     getRooms();
     setDisplayRooms(rooms);
   }, []);
+
+  useEffect(() => {
+    getRooms();
+    setDisplayRooms(rooms);
+  }, [current]);
 
   const numberInputHandler = inputText => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ''));
@@ -81,10 +86,10 @@ const RoomsList = ({ room: { rooms }, navigation, getRooms }) => {
         {!displayRooms && displayRooms.length === 0 ? (
           <Text>No rooms to show...</Text>
         ) : (
-            displayRooms.map(room => (
-              <RoomItem navigation={navigation} room={room} key={room.id} />
-            ))
-          )}
+          displayRooms.map(room => (
+            <RoomItem navigation={navigation} room={room} key={room.id} />
+          ))
+        )}
       </View>
     </ScrollView>
   );

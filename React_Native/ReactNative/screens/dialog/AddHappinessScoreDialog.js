@@ -3,28 +3,38 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Platform, StyleSheet, TextInput } from 'react-native';
 import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
+import { addHapinessScore } from '../../redux/actions/roomActions';
 
-const AddHappinessScoreDialog = props => {
+const AddHappinessScoreDialog = ({
+  dialogShow,
+  setDialogShow,
+  addHapinessScore,
+  roomName
+}) => {
+  const [score, setScore] = useState(0);
+
+  const addHappinessToRoom = () => {
+    addHapinessScore({ roomName, score });
+    setDialogShow(false);
+  };
   return (
     <View>
       <Portal>
-        <Dialog
-          visible={props.dialogShow}
-          onDismiss={() => props.setDialogShow(false)}
-        >
-          <Dialog.Title>Alert</Dialog.Title>
+        <Dialog visible={dialogShow} onDismiss={() => setDialogShow(false)}>
+          <Dialog.Title>Add Happiness Score to {roomName}</Dialog.Title>
           <Dialog.Content>
-            <Paragraph>This is simple dialog</Paragraph>
+            <Paragraph>Enter a happiness score for this room.</Paragraph>
             <TextInput
-              placeholder='Enter a happiness score for this room.'
+              placeholder='Enter score here ...'
               underlineColorAndroid='transparent'
               numeric
-              value
               keyboardType={'number-pad'}
+              onChangeText={setScore}
             />
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={() => props.setDialogShow(false)}>Done</Button>
+            <Button onPress={() => addHappinessToRoom()}>Done</Button>
+            <Button onPress={() => setDialogShow(false)}>Cancel</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
@@ -34,4 +44,4 @@ const AddHappinessScoreDialog = props => {
 
 AddHappinessScoreDialog.propTypes = {};
 
-export default connect()(AddHappinessScoreDialog);
+export default connect(null, { addHapinessScore })(AddHappinessScoreDialog);

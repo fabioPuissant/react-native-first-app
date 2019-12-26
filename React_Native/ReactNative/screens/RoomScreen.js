@@ -26,7 +26,7 @@ const RoomScreen = ({
 
   useEffect(() => {
     findAssetsOfRoom(current);
-  }, []);
+  }, [setDialogShow]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -91,6 +91,7 @@ const RoomScreen = ({
       <AddHappinessScoreDialog
         dialogShow={dialogShow}
         setDialogShow={setDialogShow}
+        roomName={current.name}
       />
 
       {!assets && assets.length === 0 ? (
