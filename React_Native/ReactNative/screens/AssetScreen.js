@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Text, FlatList,Image ,View, StyleSheet, Keyboard } from 'react-native';
+import { FlatList,Image ,View, StyleSheet, Keyboard, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
-import Header from '../layout/Header';
 import SearchBarAssets from '../layout/SearchBarAssets';
 import { TextInput, Banner, Button, Title } from 'react-native-paper';
 import TicketList from '../components/tickets/TicketList';
+import AssetGridLess from '../components/assets/AssetGridLess';
 
 import {
   getTickets,
@@ -26,14 +25,31 @@ const AssetScreen = ({
   ticket: { tickets },
   getTicketsOfAsset
 }) => {
+
+  const [enteredValue, setEnteredValue] = useState('');
+
+  const assetNameInputHandler = text => {
+    setEnteredValue(text);
+  };
+
+  const confirmInputHandler = () => {
+    const foundAssets = enteredValue;
+  };
+
   useEffect(() => {
     getTicketsOfAsset(current);
   }, []);
 
   return (
     <View>
-      <Header navigation={navigation} title={'Asset screen'} />
       <TicketList asset={current} navigation={navigation} tickets={tickets}/>
+{/* <SearchBarAssets
+        placeholder="search for assets by name"
+        assetNameInputHandler={assetNameInputHandler}
+        confirmInputHandler={confirmInputHandler}
+        enteredValue={enteredValue}
+      /> */}
+      <AssetGridLess />
     </View>
   );
 };
@@ -58,5 +74,7 @@ const mapStateToProps = state => ({
   asset: state.asset,
   ticket: state.ticket
 });
+
+{/* export default AssetScreen; */}
 
 export default connect(mapStateToProps, {setCurrentAsset, getTicketsOfAsset})(AssetScreen);

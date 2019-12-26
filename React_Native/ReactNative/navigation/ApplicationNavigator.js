@@ -1,12 +1,15 @@
 import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
+import { Ionicons } from '@expo/vector-icons';
+
+
 import Home from '../screens/Home';
 import RoomScreen from '../screens/RoomScreen';
 import TicketAddScreen from '../screens/TicketAddScreen';
 import AssetScreen from '../screens/AssetScreen';
 import TicketScreen from '../screens/TicketScreen';
 
-// Config different screens here
 const ApplicationNavigator = createStackNavigator(
   {
     HomeScreen: Home,
@@ -14,13 +17,18 @@ const ApplicationNavigator = createStackNavigator(
     TicketAddScreen: TicketAddScreen,
     AssetScreen: AssetScreen,
     TicketScreen: TicketScreen
+  }
+);
+
+const MainNavigator = createDrawerNavigator(
+  {
+    application: ApplicationNavigator
   },
   {
-    headerMode: 'none',
     navigationOptions: {
-      headerVisible: false
+      headerVisible: true,
     }
   }
 );
 
-export default createAppContainer(ApplicationNavigator);
+export default createAppContainer(MainNavigator);
