@@ -35,7 +35,7 @@ const RoomItem = props => {
           onPress={() => {
             props.clearCurrent();
             props.setCurrentRoom(props.room);
-            props.navigation.navigate('RoomScreen');
+            props.navigation.navigate('Rooms');
           }}
         >
           See Assets

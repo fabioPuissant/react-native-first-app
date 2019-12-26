@@ -75,6 +75,4 @@ const mapStateToProps = state => ({
   ticket: state.ticket
 });
 
-{/* export default AssetScreen; */ }
-
 export default connect(mapStateToProps, { setCurrentAsset, getTicketsOfAsset })(AssetScreen);

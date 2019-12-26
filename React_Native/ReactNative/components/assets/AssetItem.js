@@ -14,7 +14,7 @@ const AssetItem = ({ tickets, asset, assetState: { current }, navigation, index,
 
   const handleAssetNavigation = () => {
     setCurrentAsset(asset);
-    navigation.navigate('AssetScreen');
+    navigation.navigate('Assets');
   };
 
   return (
