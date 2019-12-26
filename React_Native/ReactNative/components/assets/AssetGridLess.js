@@ -5,9 +5,9 @@ import { getTickets } from '../../redux/actions/ticketActions';
 import AssetItemless from './AssetItemLess';
 
 const AssetGrid = ({ assets, navigation, ticket: { tickets }, getTickets }) => {
-    useEffect(() => {
-        getTickets();
-    }, []);
+    // useEffect(() => {
+    //     getTickets();
+    // }, []);
     return (
         <FlatList
             style={[styles.container]}

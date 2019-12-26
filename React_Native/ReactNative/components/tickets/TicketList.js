@@ -5,43 +5,36 @@ import PropTypes from 'prop-types';
 import TicketItem from './TicketItem';
 
 import { connect } from 'react-redux';
-import { getTicketsOfAsset } from '../../redux/actions/ticketActions';
+import { getTickets } from '../../redux/actions/ticketActions';
 
 
-const TicketList = ({ asset, navigation, tickets }) => {
+const TicketList = ({ asset: { current }, currentAsset, navigation, ticket: { allTickets }, getTicketsOfAsset }) => {
+  useEffect(() => {
+    console.log("5 current")
+    console.log(currentAsset)
+    getTickets();
+    let newTickets = allTickets.filter(t => t.assetId === currentAsset.id)
 
-  // useEffect(() => {
-  //   getTicketsOfAsset(asset.id);
-  // }, []);
+    console.log(allTickets)
+    console.log(currentAsset)
+    console.log("--------new tickets")
 
-  let datas = [
-    { id: 0, numberOfVotes: 10, description: "test1" },
-    { id: 1, numberOfVotes: 11, description: "test2" },
-    { id: 2, numberOfVotes: 12, description: "test3" },
-    { id: 3, numberOfVotes: 13, description: "test" },
-    { id: 4, numberOfVotes: 14, description: "test4" },
-  ]
+    console.log(newTickets)
+  }, []);
 
-  let propValue;
-  let count = 0;
-  for (propName in datas[0]) {
-    propValue = Object.values(datas[0])[count]
-    count++;
-    console.log(propName, propValue);
-  }
+  console.log("4 tickets")
+  console.log(JSON.stringify(allTickets))
+
+
+
 
   return (
     <View>
       <FlatList
-        data={datas}
-        renderItem={itemData => (
-          <TicketItem
-            key={itemData.id.toString()}
-            ticket={itemData.item}
-            navigation={navigation}
-          />
-        )
-        }
+        removeClippedSubviews={false}
+        data={allTickets.filter(t => t.assetId === currentAsset.id)}
+        renderItem={({ item }) => <TicketItem ticket={item} navigation={navigation} />}
+        keyExtractor={item => item.id}
       />
     </View>
   );
@@ -53,16 +46,12 @@ const styles = StyleSheet.create({
   }
 });
 
-// TicketList.propTypes = {
-//   ticket: PropTypes.object.isRequired,
-//   getTicketsOfAsset: PropTypes.func.isRequired
-// };
-
 const mapStateToProps = state => ({
-  ticket: state.ticket
+  ticket: state.ticket,
+  asset: state.asset
 });
 
 // EXPORT FOR REDUX
 export default connect(mapStateToProps, {
-  getTicketsOfAsset
+  getTickets
 })(TicketList);

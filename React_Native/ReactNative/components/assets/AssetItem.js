@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { Title, Paragraph, Card, Button } from 'react-native-paper';
+import { connect } from 'react-redux';
+import { setCurrentAsset } from '../../redux/actions/assetActions';
 
-import {
-  setCurrentAsset,
-  findAssetsOfRoom,
-  clearCurrentAsset
-} from '../../redux/actions/assetActions';
-
-const AssetItem = ({ tickets, asset, navigation, index, setCurrentAsset }) => {
+const AssetItem = ({ tickets, asset, assetState: { current }, navigation, index, setCurrentAsset }) => {
   const [displayTickets, setDisplayTickets] = useState(null);
 
   useEffect(() => {
@@ -17,7 +13,15 @@ const AssetItem = ({ tickets, asset, navigation, index, setCurrentAsset }) => {
   }, [tickets]);
 
   const handleAssetNavigation = () => {
+    console.log("1 current")
+    console.log(current)
     setCurrentAsset(asset);
+    console.log("2 current")
+    console.log(current)
+
+    console.log("3 asset")
+    console.log(asset)
+    console.log("Clicked")
     navigation.navigate('AssetScreen');
   };
 
@@ -100,4 +104,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AssetItem;
+const mapStateToProps = state => ({
+  ticket: state.ticket,
+  assetState: state.asset
+});
+
+export default connect(mapStateToProps, {
+  setCurrentAsset
+})(AssetItem);;

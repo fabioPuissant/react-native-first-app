@@ -10,7 +10,7 @@ import {
   clearCurrentAsset
 } from '../../redux/actions/assetActions';
 
-const AssetGrid = ({ assets, navigation, ticket: { tickets }, getTickets }) => {
+const AssetGrid = ({ assets, navigation, ticket: { allTickets }, getTickets }) => {
   useEffect(() => {
     getTickets();
   }, []);
@@ -24,7 +24,7 @@ const AssetGrid = ({ assets, navigation, ticket: { tickets }, getTickets }) => {
             key={itemData.id}
             index={itemData.index}
             asset={itemData.item}
-            tickets={tickets.filter(t => t.assetId === itemData.item.id)}
+            tickets={allTickets.filter(t => t.assetId === itemData.item.id)}
             navigation={navigation}
             setCurrentAsset={setCurrentAsset}
           />
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   ticket: state.ticket
-  
 });
 
 export default connect(mapStateToProps, { getTickets, setCurrentAsset })(AssetGrid);
