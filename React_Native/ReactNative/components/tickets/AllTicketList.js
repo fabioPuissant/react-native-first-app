@@ -10,7 +10,6 @@ import { getTickets } from '../../redux/actions/ticketActions';
 const AllTicketList = ({ navigation, ticket: { allTickets }, getTickets }) => {
   useEffect(() => {
     getTickets();
-    console.log('hoero');
   }, []);
 
   return (
