@@ -2,7 +2,8 @@ import {
   TICKETS_ERROR,
   GET_TICKETS_OF_ASSET,
   GET_TICKETS,
-  UPVOTE_TICKET
+  UPVOTE_TICKET,
+  SET_CURRENT_TICKET
 } from '../constants/applicationConstants';
 
 const initialState = {
@@ -30,7 +31,13 @@ export default (state = initialState, action) => {
       const tickets = state.tickets.map(t => (t.id === ticket.id ? ticket : t));
       return {
         ...state,
-        tickets: tickets
+        tickets: tickets,
+        current: ticket
+      };
+    case SET_CURRENT_TICKET:
+      return {
+        ...state,
+        current: action.payload
       };
     case TICKETS_ERROR:
       console.log(action.payload);

@@ -22,6 +22,7 @@ export const GET_TICKETS = 'GET_TICKETS';
 export const UPVOTE_TICKET = 'UPVOTE_TICKET';
 export const TICKETS_ERROR = 'TICKETS_ERROR';
 export const DELETE_TICKET = 'DELETE_TICKET';
+export const SET_CURRENT_TICKET = 'SET_CURRENT_TICKET';
 
 // Shared
 export const SET_LOADING = 'SET_LOADING';

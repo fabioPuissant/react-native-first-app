@@ -1,29 +1,21 @@
 import React, { useEffect } from 'react';
-import { Text, FlatList, View, StyleSheet, Keyboard } from 'react-native';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { View } from 'react-native';
+import { setCurrentTicket } from '../redux/actions/ticketActions';
 import Header from '../layout/Header';
-import { TextInput } from 'react-native-paper';
-import TicketDetailItem from '../components/tickets/TicketDetailItem';
 
+import TicketDetailItem from '../components/tickets/TicketDetailItem';
 
 const TicketScreen = props => {
   const ticket = props.navigation.getParam('ticketParam');
+  props.setCurrentTicket(ticket);
 
   return (
     <View>
       <Header navigation={props.navigation} title={'Ticket details'} />
-      
-      <TicketDetailItem ticket={ticket} navigation={props.navigation} />
+      <TicketDetailItem navigation={props.navigation} />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-
-});
-
-TicketScreen.propTypes = {};
-
-export default connect(null, {})(TicketScreen);
+export default connect(null, { setCurrentTicket })(TicketScreen);

@@ -2,7 +2,8 @@ import {
   TICKETS_ERROR,
   GET_TICKETS_OF_ASSET,
   GET_TICKETS,
-  UPVOTE_TICKET
+  UPVOTE_TICKET,
+  SET_CURRENT_TICKET
 } from '../constants/applicationConstants';
 
 import { BASE_URL } from '../constants/baseUrl';
@@ -43,16 +44,29 @@ export const getTicketsOfAsset = assetId => async dispatch => {
   }
 };
 
+export const setCurrentTicket = ticket => async dispatch => {
+  try {
+    dispatch({
+      type: SET_CURRENT_TICKET,
+      payload: ticket
+    });
+  } catch (error) {
+    dispatch({
+      type: TICKETS_ERROR,
+      payload: error
+    });
+  }
+};
+
 export const upVoteTicket = ticket => async dispatch => {
   try {
-    const resp = await fetch(`${ticket}/raiseVote`, {
+    const upvoteUrl = `${url}/raiseVote?ticketId=${ticket.id}`;
+    const resp = await fetch(upvoteUrl, {
       method: 'POST',
-      body: {
-        ticketId: ticket.id
-      },
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(ticket.id)
     });
     const data = await resp.json();
     dispatch({
