@@ -12,13 +12,34 @@ import AssetScreen from '../screens/AssetScreen';
 import TicketScreen from '../screens/TicketScreen';
 import HeaderButton from '../components/HeaderButton';
 import colors from '../constants/Colors';
+import AllAssetsScreen from '../screens/AllAssetsScreen';
+
+const Hidden = () => {
+  return null;
+};
 
 const MainNavigator = createDrawerNavigator(
   {
     Home: Home,
-    Assets: AssetScreen,
-    Tickets: TicketScreen,
-    Rooms: RoomScreen
+    Assets: {
+      screen: AssetScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
+    Tickets: {
+      screen: TicketScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
+    Rooms: {
+      screen: RoomScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
+    AllAssets: AllAssetsScreen
   },
   {
     navigationOptions: ({ navigation }) => ({
