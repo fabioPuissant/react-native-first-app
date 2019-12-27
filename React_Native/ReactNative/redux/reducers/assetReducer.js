@@ -3,7 +3,8 @@ import {
   CLEAR_CURRENT_ASSET,
   ASSETS_ERROR,
   SET_CURRENT_ASSET,
-  GET_ASSETS_OF_ROOM
+  GET_ASSETS_OF_ROOM,
+  ALL_ASSETS
 } from '../constants/applicationConstants';
 
 const initialState = {
@@ -40,6 +41,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true
+      };
+    case ALL_ASSETS:
+      return {
+        ...state,
+        assets: action.payload
       };
     default:
       return state;

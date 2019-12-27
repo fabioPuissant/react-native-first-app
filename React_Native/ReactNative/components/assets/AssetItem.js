@@ -4,7 +4,14 @@ import { Title, Paragraph, Card, Button } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { setCurrentAsset } from '../../redux/actions/assetActions';
 
-const AssetItem = ({ tickets, asset, assetState: { current }, navigation, index, setCurrentAsset }) => {
+const AssetItem = ({
+  tickets,
+  asset,
+  assetState: { current },
+  navigation,
+  index,
+  setCurrentAsset
+}) => {
   const [displayTickets, setDisplayTickets] = useState(null);
 
   useEffect(() => {
@@ -45,15 +52,14 @@ const AssetItem = ({ tickets, asset, assetState: { current }, navigation, index,
           compact={true}
           onPress={handleAssetNavigation}
         >
-          See tickets
-      </Button>
+          Tickets
+        </Button>
       </Card.Actions>
     </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  even: {},
   whiteText: {
     color: '#FFF'
   },
@@ -63,11 +69,10 @@ const styles = StyleSheet.create({
     borderColor: '#FFF',
     padding: 5
   },
-  odd: {},
+
   item: {
     flex: 1,
     margin: 15,
-    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#5E00EA',
@@ -103,4 +108,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   setCurrentAsset
-})(AssetItem);;
+})(AssetItem);

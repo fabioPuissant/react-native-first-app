@@ -25,7 +25,7 @@ const RoomScreen = ({
   const [dialogShow, setDialogShow] = useState(false);
 
   findAssetsOfRoom(current);
-  
+
   return (
     <View style={{ flex: 1 }}>
       <Header title={`Room Details`} navigation={navigation} />
@@ -67,10 +67,13 @@ const RoomScreen = ({
             />
           )}
         >
-          <Text>
-            {current.name}
-            {'\n'}
-          </Text>
+          {current ? (
+            <Text>
+              {current.name}
+              {'\n'}
+            </Text>
+          ) : null}
+
           <Text>
             The Happiness score of this room is: {current.happinessScore}
           </Text>

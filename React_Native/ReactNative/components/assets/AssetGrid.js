@@ -10,7 +10,12 @@ import {
   clearCurrentAsset
 } from '../../redux/actions/assetActions';
 
-const AssetGrid = ({ assets, navigation, ticket: { allTickets }, getTickets }) => {
+const AssetGrid = ({
+  assets,
+  navigation,
+  ticket: { allTickets },
+  getTickets
+}) => {
   useEffect(() => {
     getTickets();
   }, []);
@@ -43,4 +48,6 @@ const mapStateToProps = state => ({
   ticket: state.ticket
 });
 
-export default connect(mapStateToProps, { getTickets, setCurrentAsset })(AssetGrid);
+export default connect(mapStateToProps, { getTickets, setCurrentAsset })(
+  AssetGrid
+);

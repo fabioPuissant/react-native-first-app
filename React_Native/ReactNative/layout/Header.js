@@ -6,9 +6,7 @@ const Header = props => {
     <Appbar.Header>
       {props.navigation ? (
         <Appbar.BackAction onPress={() => props.navigation.goBack()} />
-      ) : (
-        <Text></Text>
-      )}
+      ) : null}
       <Appbar.Content title={props.title} />
     </Appbar.Header>
   );

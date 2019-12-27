@@ -12,13 +12,15 @@ import AssetScreen from '../screens/AssetScreen';
 import TicketScreen from '../screens/TicketScreen';
 import HeaderButton from '../components/HeaderButton';
 import colors from '../constants/Colors';
+import AllAssetsScreen from '../screens/AllAssetsScreen';
 
 const MainNavigator = createDrawerNavigator(
   {
     Home: Home,
     Assets: AssetScreen,
     Tickets: TicketScreen,
-    Rooms: RoomScreen
+    Rooms: RoomScreen,
+    AllAssets: AllAssetsScreen
   },
   {
     navigationOptions: ({ navigation }) => ({
