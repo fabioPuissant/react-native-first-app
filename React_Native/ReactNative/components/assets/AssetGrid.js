@@ -21,7 +21,7 @@ const AssetGrid = ({
   }, []);
 
   return (
-    <FadeInView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={assets}
         renderItem={itemData => {
@@ -38,7 +38,7 @@ const AssetGrid = ({
         }}
         numColumns={2}
       />
-    </FadeInView>
+    </View>
   );
 };
 

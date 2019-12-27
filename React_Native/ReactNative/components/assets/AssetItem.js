@@ -3,6 +3,7 @@ import { StyleSheet, View, Image } from 'react-native';
 import { Title, Paragraph, Card, Button } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { setCurrentAsset } from '../../redux/actions/assetActions';
+import FadeView from '../../layout/FadeInView';
 
 const AssetItem = ({
   tickets,
@@ -27,7 +28,7 @@ const AssetItem = ({
   return (
     <View style={{ flex: 1 }}>
       <Card style={styles.item}>
-        <View style={styles.imgContainer}>
+        <FadeView style={styles.imgContainer}>
           <Image
             fadeDuration={400}
             source={{
@@ -37,25 +38,27 @@ const AssetItem = ({
             style={styles.image}
             resizeMode='cover'
           />
-        </View>
-        <View style={styles.whiteText}>
+        </FadeView>
+        <FadeView style={styles.whiteText}>
           <Title style={{ color: '#FFF', fontSize: 15 }}>{asset.name}</Title>
 
           <Paragraph style={styles.whiteText}>{'Id: ' + asset.id}</Paragraph>
           <Paragraph style={styles.whiteText}>
             {'Tickets: ' + (displayTickets ? displayTickets.length : 0)}
           </Paragraph>
-        </View>
-        <Card.Actions>
-          <Button
-            mode={'contained'}
-            labelStyle={styles.ticketButton}
-            compact={true}
-            onPress={handleAssetNavigation}
-          >
-            See tickets
-          </Button>
-        </Card.Actions>
+        </FadeView>
+        <FadeView>
+          <Card.Actions>
+            <Button
+              mode={'contained'}
+              labelStyle={styles.ticketButton}
+              compact={true}
+              onPress={handleAssetNavigation}
+            >
+              See tickets
+            </Button>
+          </Card.Actions>
+        </FadeView>
       </Card>
     </View>
   );
