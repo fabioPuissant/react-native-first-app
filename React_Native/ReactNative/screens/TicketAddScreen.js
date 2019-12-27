@@ -10,10 +10,9 @@ import HeaderButton from '../components/HeaderButton';
 //searchbar assets op naam van assets
 //toon lijst met id en roomid
 const TicketAddScreen = props => {
-
   return (
     <View>
-      <AddTicket />
+      <AddTicket navigation={props.navigation}/>
     </View>
   );
 };

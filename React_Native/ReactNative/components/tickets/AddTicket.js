@@ -3,10 +3,13 @@ import { Text, View, StyleSheet, TextInput, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Card, Avatar } from 'react-native-paper';
+import { addTicketToAsset } from '../../redux/actions/assetActions'
 
+const AddTicket = ({
+    addTicketToAsset,
+    navigation
+}) => {
 
-
-const AddTicket = props => {
     const [description, setDescription] = useState('');
 
     const clearDescriptionHandler = () => {
@@ -14,8 +17,12 @@ const AddTicket = props => {
     };
 
     const addTicketHandler = () => {
-        Alert.alert('description', description, [{ text: 'ok' }]);
-    }
+        let ticketObject = {
+            "description": description
+        };
+        const assetName = navigation.getParam('assetNameParam');
+        addTicketToAsset({ assetName, ticketObject });
+    };
 
 
     return (
@@ -79,5 +86,4 @@ const styles = StyleSheet.create({
 
 AddTicket.propTypes = {};
 
-//export default connect(null, {})(AddTicket);
-export default AddTicket;
+export default connect(null, { addTicketToAsset })(AddTicket);
