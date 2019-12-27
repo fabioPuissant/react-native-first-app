@@ -14,10 +14,6 @@ const TicketItem = ({ ticket, navigation }) => {
     navigation.navigate('Tickets', { ticketParam: ticket });
   };
 
-  const [upvotes, setUpvotes] = useState('');
-
-  const upvoteHandler = () => {};
-
   return (
     <Card style={styles.mgnV}>
       <Card.Content>
