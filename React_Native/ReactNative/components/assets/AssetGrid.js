@@ -14,7 +14,7 @@ const AssetGrid = ({ assets, navigation, ticket: { allTickets }, getTickets }) =
   
   useEffect(() => {
     getTickets();
-}, [allTickets]);
+}, []);
   
   return (
     <FadeInView style={styles.container}>
