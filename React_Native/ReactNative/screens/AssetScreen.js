@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, View, StyleSheet, Keyboard, Text } from 'react-native';
+import {
+  FlatList,
+  Image,
+  View,
+  StyleSheet,
+  Keyboard,
+  Text
+} from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SearchBarAssets from '../layout/SearchBarAssets';
@@ -25,7 +32,6 @@ const AssetScreen = ({
   ticket: { tickets },
   getTicketsOfAsset
 }) => {
-
   const [enteredValue, setEnteredValue] = useState('');
 
   const assetNameInputHandler = text => {
@@ -42,14 +48,11 @@ const AssetScreen = ({
 
   return (
     <View>
-      <TicketList currentAsset={current} navigation={navigation} tickets={tickets} />
-      {/* <SearchBarAssets
-        placeholder="search for assets by name"
-        assetNameInputHandler={assetNameInputHandler}
-        confirmInputHandler={confirmInputHandler}
-        enteredValue={enteredValue}
-      /> */}
-      {/* <AssetGridLess /> */}
+      <TicketList
+        currentAsset={current}
+        navigation={navigation}
+        tickets={tickets}
+      />
     </View>
   );
 };
@@ -75,4 +78,6 @@ const mapStateToProps = state => ({
   ticket: state.ticket
 });
 
-export default connect(mapStateToProps, { setCurrentAsset, getTicketsOfAsset })(AssetScreen);
+export default connect(mapStateToProps, { setCurrentAsset, getTicketsOfAsset })(
+  AssetScreen
+);

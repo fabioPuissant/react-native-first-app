@@ -14,12 +14,26 @@ import HeaderButton from '../components/HeaderButton';
 import colors from '../constants/Colors';
 import AllAssetsScreen from '../screens/AllAssetsScreen';
 
+const Hidden = () => {
+  return null;
+};
+
 const MainNavigator = createDrawerNavigator(
   {
     Home: Home,
     Assets: AssetScreen,
-    Tickets: TicketScreen,
-    Rooms: RoomScreen,
+    Tickets: {
+      screen: TicketScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
+    Rooms: {
+      screen: RoomScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
     AllAssets: AllAssetsScreen
   },
   {
