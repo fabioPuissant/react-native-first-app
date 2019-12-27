@@ -5,10 +5,6 @@ import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
 const TicketDetailItem = ({ ticket, navigation }) => {
 
-    const handleTicketNavigation = () => {
-        navigation.navigate('Tickets')
-    }
-
     const [upvotes, setUpvotes] = useState("");
 
     const upvoteHandler = () => {

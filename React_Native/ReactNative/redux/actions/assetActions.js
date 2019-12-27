@@ -3,7 +3,8 @@ import {
   CLEAR_CURRENT_ASSET,
   SET_CURRENT_ASSET,
   ASSETS_ERROR,
-  SET_LOADING
+  SET_LOADING,
+  ADD_TICKET_TO_ASSET
 } from '../constants/applicationConstants';
 
 import { BASE_URL } from '../constants/baseUrl';
@@ -50,4 +51,29 @@ export const setLoading = () => {
   return {
     type: SET_LOADING
   };
+}
+
+// Add ticket to asset
+export const addTicketToAsset = prop => async dispatch => {
+  try {
+    const resp = await fetch(`${url}/addTicket?name=${prop.assetName}`, {
+      method: 'POST',
+      body: JSON.stringify(prop.ticketObject),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    const data = true;
+
+    dispatch({
+      type: ADD_TICKET_TO_ASSET,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: ASSETS_ERROR,
+      payload: error
+    });
+  }
 };

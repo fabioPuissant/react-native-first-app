@@ -10,6 +10,7 @@ import RoomScreen from '../screens/RoomScreen';
 import TicketAddScreen from '../screens/TicketAddScreen';
 import AssetScreen from '../screens/AssetScreen';
 import TicketScreen from '../screens/TicketScreen';
+import AllTicketScreen from '../screens/AllTicketScreen';
 import HeaderButton from '../components/HeaderButton';
 import colors from '../constants/Colors';
 
@@ -18,7 +19,9 @@ const MainNavigator = createDrawerNavigator(
     Home: Home,
     Assets: AssetScreen,
     Tickets: TicketScreen,
-    Rooms: RoomScreen
+    Rooms: RoomScreen,
+    TicketAddScreen: TicketAddScreen,
+    'All Tickets': AllTicketScreen
   },
   {
     navigationOptions: ({ navigation }) => ({
