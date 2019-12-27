@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SearchBarAssets from '../layout/SearchBarAssets';
 import { TextInput, Banner, Button, Title, FAB } from 'react-native-paper';
-import TicketList from '../components/tickets/TicketList';
+import AllTicketList from '../components/tickets/AllTicketList';
 import AssetGridLess from '../components/assets/AssetGridLess';
 
 import {
@@ -48,20 +48,7 @@ const AssetScreen = ({
 
   return (
     <View style={styles.view}>
-      <TicketList
-        currentAsset={current}
-        navigation={navigation}
-        tickets={tickets}
-      />
-      <FAB
-        style={styles.fab}
-        icon='plus'
-        onPress={() =>
-          navigation.navigate('TicketAddScreen', {
-            assetNameParam: current.name
-          })
-        }
-      />
+      <AllTicketList navigation={navigation} tickets={tickets} />
     </View>
   );
 };

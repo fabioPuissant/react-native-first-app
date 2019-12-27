@@ -3,14 +3,16 @@ import {
   CLEAR_CURRENT_ASSET,
   ASSETS_ERROR,
   SET_CURRENT_ASSET,
-  GET_ASSETS_OF_ROOM
+  GET_ASSETS_OF_ROOM,
+  ADD_TICKET_TO_ASSET
 } from '../constants/applicationConstants';
 
 const initialState = {
   assets: [],
   current: null,
   loading: false,
-  error: null
+  error: null,
+  addSucceeded: false
 };
 
 export default (state = initialState, action) => {
@@ -40,6 +42,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true
+      };
+    case ADD_TICKET_TO_ASSET:
+      return {
+        ...state,
+        addSucceeded: action.payload
       };
     default:
       return state;

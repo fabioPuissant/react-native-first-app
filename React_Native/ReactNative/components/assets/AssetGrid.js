@@ -10,15 +10,12 @@ import {
   clearCurrentAsset
 } from '../../redux/actions/assetActions';
 
-const AssetGrid = ({
-  assets,
-  navigation,
-  ticket: { allTickets },
-  getTickets
-}) => {
+const AssetGrid = ({ assets, navigation, ticket: { allTickets }, getTickets }) => {
+  
   useEffect(() => {
     getTickets();
-  }, []);
+}, [allTickets]);
+  
   return (
     <FadeInView style={styles.container}>
       <FlatList
