@@ -5,15 +5,17 @@ import { connect } from 'react-redux';
 
 import Header from '../layout/Header';
 import { TextInput } from 'react-native-paper';
+import TicketDetailItem from '../components/tickets/TicketDetailItem';
 
 
 const TicketScreen = props => {
+  const ticket = props.navigation.getParam('ticketParam');
 
   return (
     <View>
-      <Header navigation={props.navigation} title={'Hello ticket screen'} />
+      <Header navigation={props.navigation} title={'Ticket details'} />
       
-      <Text>TicketScreen</Text>
+      <TicketDetailItem ticket={ticket} navigation={props.navigation} />
     </View>
   );
 };

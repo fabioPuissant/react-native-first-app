@@ -3,10 +3,10 @@ import { StyleSheet, View, TouchableWithoutFeedback, Text, Image } from 'react-n
 import { connect } from 'react-redux';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
-const TicketItem = ({ ticket, navigation }) => {
+const TicketDetailItem = ({ ticket, navigation }) => {
 
     const handleTicketNavigation = () => {
-        navigation.navigate('Tickets', {ticketParam: ticket})
+        navigation.navigate('Tickets')
     }
 
     const [upvotes, setUpvotes] = useState("");
@@ -33,6 +33,7 @@ const TicketItem = ({ ticket, navigation }) => {
                         />
                     </View>
                 </View>
+                <Paragraph>{ticket.description}</Paragraph>
             </Card.Content>
 
             <Card.Actions>
@@ -40,10 +41,11 @@ const TicketItem = ({ ticket, navigation }) => {
                     <Button
                         style={styles.button}
                         color="#3471eb"
-                        icon="information-outline"
+                        icon="arrow-up-bold"
                         mode="contained"
-                        onPress={handleTicketNavigation}>
-                        Ticket Details
+                        background-color="#4CAF50"
+                        onPress={upvoteHandler}>
+                        Upvote
                     </Button>
                 </View>
             </Card.Actions>
@@ -86,4 +88,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TicketItem;
+export default TicketDetailItem;
