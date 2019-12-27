@@ -15,6 +15,7 @@ import Constants from 'expo-constants';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 import { addHapinessScore } from '../../redux/actions/roomActions';
+import * as Animated from 'react-native-animatable';
 
 const AddHappinessScoreDialog = ({
   dialogShow,
