@@ -1,5 +1,6 @@
 import {
   GET_ASSETS_OF_ROOM,
+  ALL_ASSETS,
   CLEAR_CURRENT_ASSET,
   SET_CURRENT_ASSET,
   ASSETS_ERROR,
@@ -9,6 +10,24 @@ import {
 import { BASE_URL } from '../constants/baseUrl';
 
 const url = `${BASE_URL}/assets`;
+
+// Find all Assets
+export const findAllAssets = () => async dispatch => {
+  try {
+    const resp = await fetch(`${url}`);
+    const data = await resp.json();
+
+    dispatch({
+      type: GET_ASSETS_OF_ROOM,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: ASSETS_ERROR,
+      payload: error
+    });
+  }
+};
 
 // Find Assets of room
 export const findAssetsOfRoom = room => async dispatch => {
