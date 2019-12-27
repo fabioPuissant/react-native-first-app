@@ -25,7 +25,7 @@ const AssetItem = ({
   };
 
   return (
-    <Card style={[styles.item, index % 2 === 0 ? styles.even : styles.odd]}>
+    <Card style={styles.item}>
       <View style={styles.imgContainer}>
         <Image
           fadeDuration={400}
