@@ -4,7 +4,6 @@ import { View, FlatList, SafeAreaView, StyleSheet } from 'react-native';
 import { getTickets } from '../../redux/actions/ticketActions';
 import AssetItem from './AssetItem';
 import FadeInView from '../../layout/FadeInView';
-
 import {
   setCurrentAsset,
   findAssetsOfRoom,

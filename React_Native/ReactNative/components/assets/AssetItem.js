@@ -25,37 +25,39 @@ const AssetItem = ({
   };
 
   return (
-    <Card style={styles.item}>
-      <View style={styles.imgContainer}>
-        <Image
-          fadeDuration={400}
-          source={{
-            uri:
-              'https://images.pexels.com/photos/114820/pexels-photo-114820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
-          }}
-          style={styles.image}
-          resizeMode='cover'
-        />
-      </View>
-      <View style={styles.whiteText}>
-        <Title style={{ color: '#FFF', fontSize: 15 }}>{asset.name}</Title>
+    <View style={{ flex: 1 }}>
+      <Card style={styles.item}>
+        <View style={styles.imgContainer}>
+          <Image
+            fadeDuration={400}
+            source={{
+              uri:
+                'https://images.pexels.com/photos/114820/pexels-photo-114820.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            }}
+            style={styles.image}
+            resizeMode='cover'
+          />
+        </View>
+        <View style={styles.whiteText}>
+          <Title style={{ color: '#FFF', fontSize: 15 }}>{asset.name}</Title>
 
-        <Paragraph style={styles.whiteText}>{'Id: ' + asset.id}</Paragraph>
-        <Paragraph style={styles.whiteText}>
-          {'Tickets: ' + (displayTickets ? displayTickets.length : 0)}
-        </Paragraph>
-      </View>
-      <Card.Actions>
-        <Button
-          mode={'contained'}
-          labelStyle={styles.ticketButton}
-          compact={true}
-          onPress={handleAssetNavigation}
-        >
-          Tickets
-        </Button>
-      </Card.Actions>
-    </Card>
+          <Paragraph style={styles.whiteText}>{'Id: ' + asset.id}</Paragraph>
+          <Paragraph style={styles.whiteText}>
+            {'Tickets: ' + (displayTickets ? displayTickets.length : 0)}
+          </Paragraph>
+        </View>
+        <Card.Actions>
+          <Button
+            mode={'contained'}
+            labelStyle={styles.ticketButton}
+            compact={true}
+            onPress={handleAssetNavigation}
+          >
+            See tickets
+          </Button>
+        </Card.Actions>
+      </Card>
+    </View>
   );
 };
 

@@ -21,7 +21,12 @@ const Hidden = () => {
 const MainNavigator = createDrawerNavigator(
   {
     Home: Home,
-    Assets: AssetScreen,
+    Assets: {
+      screen: AssetScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
     Tickets: {
       screen: TicketScreen,
       navigationOptions: {
