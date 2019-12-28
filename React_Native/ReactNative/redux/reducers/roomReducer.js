@@ -54,6 +54,7 @@ export default (state = initialState, action) => {
           r.id === action.payload.id ? action.payload : r
         )
       };
+
     case SET_LOADING:
       return {
         ...state,

@@ -69,10 +69,13 @@ const RoomScreen = ({
             />
           )}
         >
-          <Text>
-            {current.name}
-            {'\n'}
-          </Text>
+          {current ? (
+            <Text>
+              {current.name}
+              {'\n'}
+            </Text>
+          ) : null}
+
           <Text>
             The Happiness score of this room is: {current.happinessScore}
           </Text>

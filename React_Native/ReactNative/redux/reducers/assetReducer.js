@@ -4,7 +4,8 @@ import {
   ASSETS_ERROR,
   SET_CURRENT_ASSET,
   GET_ASSETS_OF_ROOM,
-  ADD_TICKET_TO_ASSET
+  ADD_TICKET_TO_ASSET,
+  ALL_ASSETS
 } from '../constants/applicationConstants';
 
 const initialState = {
@@ -47,6 +48,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         addSucceeded: action.payload
+      };
+    case ALL_ASSETS:
+      return {
+        ...state,
+        assets: action.payload
       };
     default:
       return state;
