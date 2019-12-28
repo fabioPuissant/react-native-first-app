@@ -61,6 +61,7 @@ export const setCurrentTicket = ticket => async dispatch => {
 export const upVoteTicket = ticket => async dispatch => {
   try {
     const upvoteUrl = `${url}/raiseVote?ticketId=${ticket.id}`;
+
     const resp = await fetch(upvoteUrl, {
       method: 'POST',
       headers: {

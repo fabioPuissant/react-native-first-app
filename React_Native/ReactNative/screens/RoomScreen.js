@@ -24,11 +24,10 @@ const RoomScreen = ({
   const [show, setShow] = useState(true);
   const [dialogShow, setDialogShow] = useState(false);
 
-
   useEffect(() => {
     findAssetsOfRoom(current);
-  }, [assets, current]);
-  
+  }, [current]);
+
   return (
     <View style={{ flex: 1 }}>
       <Header title={`Room Details`} navigation={navigation} />
