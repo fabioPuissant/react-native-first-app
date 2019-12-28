@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expo": "~36.0.0",
+    "expo-barcode-scanner": "^8.0.0",
     "formik": "^2.0.8",
     "materialize": "^1.0.0",
     "materialize-css": "^1.0.0-rc.2",

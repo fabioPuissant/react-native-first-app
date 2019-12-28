@@ -14,6 +14,7 @@ import AllTicketScreen from '../screens/AllTicketScreen';
 import HeaderButton from '../components/HeaderButton';
 import colors from '../constants/Colors';
 import AllAssetsScreen from '../screens/AllAssetsScreen';
+import QR from '../screens/QR';
 
 const Hidden = () => {
   return null;
@@ -48,7 +49,8 @@ const MainNavigator = createDrawerNavigator(
         drawerLabel: <Hidden />
       }
     },
-    'All Tickets': AllTicketScreen
+    'All Tickets': AllTicketScreen,
+    QR: QR
   },
   {
     navigationOptions: ({ navigation }) => ({
