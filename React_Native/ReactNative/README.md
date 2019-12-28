@@ -25,3 +25,17 @@
 > Zichtbaar voor de room items. Deze items komen vertraagd op het scherm en lijken te springen bij het errste keer laden van dit scherm, code in RoomItem.js
 >
 > [Link to code](./components/rooms/RoomItem.js)
+
+# Michaël individuele taak:
+
+> ## Gebruik gemaakt van de camera om QR-codes te scannen.
+
+Het idee is om op assets zoals een beamer een qr-code te plakken, die kan dan gescand worden en dan krijg je te zien wat de naam en het id is van die asset. Zo kunnen gebruikers makkelijk deze informatie achterhalen indien ze een ticket willen aanmaken.
+
+> - Package hiervoor gebruikt = "expo-barcode-scanner"
+
+> [Link to code](./screens/QR.js)
+
+Er is een QR-code onder React_Native/ReactNative folder toegevoegd om te demonstreren.
+
+> [Link to QR-code](./qr-code.png )
