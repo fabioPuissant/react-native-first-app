@@ -80,9 +80,6 @@ export const findRoomByName = name => async dispatch => {
 // Find rooms with happiness lower or equal than
 export const findRoomWithHappinessLessThan = score => async dispatch => {
   try {
-    // const response = await fetch(`${url}/happiness?lower_than=${score}`);
-    //  const data = await response.json();
-
     dispatch({
       type: GET_ROOMS_LOWER_THAN,
       payload: score
@@ -98,8 +95,6 @@ export const findRoomWithHappinessLessThan = score => async dispatch => {
 // Find rooms with happiness higher or equal than
 export const findRoomWithHappinessHigherThan = score => async dispatch => {
   try {
-    // const response = await fetch(`${url}/happiness?lower_than=${score}`);
-    //  const data = await response.json();
     dispatch({
       type: GET_ROOMS_HIGHER_OR_EQUAL_THAN,
       payload: score

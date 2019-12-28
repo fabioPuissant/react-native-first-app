@@ -10,10 +10,9 @@ import {
   Keyboard
 } from 'react-native';
 
-// redux shit
 import { connect } from 'react-redux';
 import { getRooms } from '../../redux/actions/roomActions';
-// End redux shit
+
 import Header from '../../layout/Header';
 import RoomItem from './RoomItem';
 
@@ -108,7 +107,6 @@ const mapStateToProps = state => ({
   room: state.room
 });
 
-// EXPORT FOR REDUX
 export default connect(mapStateToProps, {
   getRooms
 })(RoomsList);

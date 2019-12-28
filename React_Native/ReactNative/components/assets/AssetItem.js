@@ -65,7 +65,6 @@ const AssetItem = ({
 };
 
 const styles = StyleSheet.create({
-  even: {},
   whiteText: {
     color: '#FFF'
   },
@@ -75,11 +74,10 @@ const styles = StyleSheet.create({
     borderColor: '#FFF',
     padding: 5
   },
-  odd: {},
+
   item: {
     flex: 1,
-    margin: 10,
-    padding: 20,
+    margin: 15,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#5E00EA',
