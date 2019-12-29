@@ -70,7 +70,7 @@ export const setLoading = () => {
   return {
     type: SET_LOADING
   };
-}
+};
 
 // Add ticket to asset
 export const addTicketToAsset = prop => async dispatch => {
@@ -82,8 +82,8 @@ export const addTicketToAsset = prop => async dispatch => {
         'Content-Type': 'application/json'
       }
     });
-    
-    const data = true;
+    console.log(prop.assetName, prop.ticketObject);
+    const data = await resp.json();
 
     dispatch({
       type: ADD_TICKET_TO_ASSET,

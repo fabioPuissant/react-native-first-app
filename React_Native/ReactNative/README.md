@@ -9,6 +9,11 @@
 > Verder hebben we er een zelfgeschreven animation in gestoken. Deze animation zorgt voor het vertraagd laden van de asset items in het Room Detail scherm. Dit hebben we gedaan via de **Animated** API die in React Native standaard zit. Deze animation hebben we toegepast op een View en hebben hier een component van gemaakt zodat we dezelfde animation op meerdere plaatsen konden herbruiken in de applicatie.
 >
 > [Link to code](./layout/FadeInView.js)
+>
+> Een custom hooks package toegevoegd via yarn, voor navigeren en opnieuw ophalen van data van de API te vergemakkelijken.
+> Door deze package kunnen we weten wanneer een component focus opnieuw focus heeft.
+>
+> [Link to package](https://github.com/react-navigation/hooks)
 
 # Fabio individuele taak:
 
@@ -38,4 +43,4 @@ Het idee is om op assets zoals een beamer een qr-code te plakken, die kan dan ge
 
 Er is een QR-code onder React_Native/ReactNative folder toegevoegd om te demonstreren.
 
-> [Link to QR-code](./qr-code.png )
+> [Link to QR-code](./qr-code.png)
