@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import SearchBarAssets from '../layout/SearchBarAssets';
 import { TextInput, Banner, Button, Title, FAB } from 'react-native-paper';
 import TicketList from '../components/tickets/TicketList';
-import AssetGridLess from '../components/assets/AssetGridLess';
+import styles from './screenStyles';
 
 import {
   getTickets,
@@ -70,27 +70,6 @@ AssetScreen.navigationOptions = {
   headerTitle: 'Asset screen'
 };
 AssetScreen.propTypes = {};
-
-const styles = StyleSheet.create({
-  flex: { flex: 1 },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  purpleText: {
-    color: '#5E00EA'
-  },
-  view: {
-    flex: 1,
-    backgroundColor: '#e6f2ff'
-  },
-  fab: {
-    position: 'absolute',
-    margin: 20,
-    bottom: 0,
-    right: 0
-  }
-});
 
 const mapStateToProps = state => ({
   asset: state.asset,

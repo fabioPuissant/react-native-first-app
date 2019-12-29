@@ -13,14 +13,4 @@ const Header = props => {
   );
 };
 
-const styles = StyleSheet.create({
-  header: {
-    alignItems: 'center'
-  },
-  headerTitle: {
-    color: 'white',
-    fontSize: 20
-  }
-});
-
 export default Header;

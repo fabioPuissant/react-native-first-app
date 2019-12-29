@@ -5,6 +5,7 @@ import Header from '../layout/Header';
 import { findAllAssets } from '../redux/actions/assetActions';
 import { setCurrentAsset } from '../redux/actions/assetActions';
 import AssetGrid from '../components/assets/AssetGrid';
+import styles from './screenStyles';
 
 const AllAssetsScreen = ({
   navigation,
@@ -17,7 +18,7 @@ const AllAssetsScreen = ({
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.flex}>
       <Header title={'All assets screen'} />
       <AssetGrid navigation={navigation} assets={assets} />
     </View>

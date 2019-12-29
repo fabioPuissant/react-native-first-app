@@ -11,11 +11,11 @@ import {
   Image,
   Text
 } from 'react-native';
-import Constants from 'expo-constants';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 import { addHapinessScore } from '../../redux/actions/roomActions';
 import * as Animated from 'react-native-animatable';
+import styles from '../screenStyles';
 
 const AddHappinessScoreDialog = ({
   dialogShow,
@@ -118,34 +118,6 @@ const AddHappinessScoreDialog = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    padding: 8
-  },
-  modal: {
-    flex: 1,
-    marginTop: '90%',
-    backgroundColor: '#E5E5E5',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  innerContainer: {
-    marginTop: '30%',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  text: {
-    alignSelf: 'center',
-    fontSize: 22,
-    paddingTop: 20
-  }
-});
 
 AddHappinessScoreDialog.propTypes = {};
 

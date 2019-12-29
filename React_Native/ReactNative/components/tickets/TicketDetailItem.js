@@ -2,6 +2,7 @@ import React, { usState, useEffect, useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Card, Title, Paragraph } from 'react-native-paper';
+import styles from './ticketStyles';
 
 import {
   upVoteTicket,
@@ -61,41 +62,6 @@ const TicketDetailItem = ({
     </Card>
   );
 };
-
-const styles = StyleSheet.create({
-  mgnV: {
-    marginVertical: 20
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  centerText: {
-    justifyContent: 'center'
-  },
-  fixToText: {
-    flexDirection: 'row'
-  },
-  button: {
-    margin: 5
-  },
-  image: {
-    width: '100%',
-    height: '100%'
-  },
-  imgContainer: {
-    borderRadius: 190,
-    borderWidth: 3,
-    borderColor: '#FFF',
-    width: 50,
-    height: 50,
-    marginHorizontal: 15,
-    overflow: 'hidden',
-    marginVertical: 0,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
 
 const mapStateToProps = state => ({
   ticket: state.ticket

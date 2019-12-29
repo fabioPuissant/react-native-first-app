@@ -17,10 +17,6 @@ const TicketAddScreen = props => {
   );
 };
 
-
-const styles = StyleSheet.create({
-});
-
 TicketAddScreen.propTypes = {};
 
 export default connect(null, {})(TicketAddScreen);

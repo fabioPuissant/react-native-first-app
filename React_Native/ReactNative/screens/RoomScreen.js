@@ -8,6 +8,7 @@ import AssetGrid from '../components/assets/AssetGrid';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import AddHappinessScoreDialog from './dialog/AddHappinessScoreDialog';
+import styles from './screenStyles';
 
 import {
   setCurrentAsset,
@@ -122,17 +123,6 @@ RoomScreen.navigationOptions = navData => {
   };
 };
 RoomScreen.propTypes = {};
-
-const styles = StyleSheet.create({
-  flex: { flex: 1 },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  purpleText: {
-    color: '#5E00EA'
-  }
-});
 
 const mapStateToProps = state => ({
   asset: state.asset,

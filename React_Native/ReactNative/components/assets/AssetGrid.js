@@ -4,6 +4,7 @@ import { View, FlatList, SafeAreaView, StyleSheet } from 'react-native';
 import { getTickets } from '../../redux/actions/ticketActions';
 import AssetItem from './AssetItem';
 import FadeInView from '../../layout/FadeInView';
+import styles from './assetStyles';
 import {
   setCurrentAsset,
   findAssetsOfRoom,
@@ -41,10 +42,6 @@ const AssetGrid = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { padding: 20, flex: 1 }
-});
 
 const mapStateToProps = state => ({
   ticket: state.ticket

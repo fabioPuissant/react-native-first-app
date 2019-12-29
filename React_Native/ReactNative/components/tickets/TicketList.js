@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-
 import TicketItem from './TicketItem';
-
 import { connect } from 'react-redux';
 import { getTickets } from '../../redux/actions/ticketActions';
-
+import styles from './ticketStyles';
 
 const TicketList = ({ asset: { current }, currentAsset, navigation, ticket: { allTickets }, getTicketsOfAsset }) => {
   useEffect(() => {
@@ -24,12 +22,6 @@ const TicketList = ({ asset: { current }, currentAsset, navigation, ticket: { al
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  centerHoriz: {
-    padding: 20
-  }
-});
 
 const mapStateToProps = state => ({
   ticket: state.ticket,

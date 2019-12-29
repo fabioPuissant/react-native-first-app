@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Card, Avatar } from 'react-native-paper';
 import { addTicketToAsset } from '../../redux/actions/assetActions'
+import styles from './ticketStyles';
 
 const AddTicket = ({
     addTicketToAsset,
@@ -40,49 +41,16 @@ const AddTicket = ({
                 </TextInput>
             </Card.Content>
             <Card.Actions>
-                <Button style={styles.button} mode="contained" onPress={addTicketHandler}>
+                <Button style={styles.addTicketButton} mode="contained" onPress={addTicketHandler}>
                     ADD TICKET
                 </Button>
-                <Button style={styles.button} mode="contained" onPress={clearDescriptionHandler}>
+                <Button style={styles.addTicketButton} mode="contained" onPress={clearDescriptionHandler}>
                     CLEAR
             </Button>
             </Card.Actions>
         </Card>
     );
 };
-
-
-const styles = StyleSheet.create({
-    descriptionContainer: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    form: {
-        margin: 50,
-        padding: 10,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    button: {
-        marginHorizontal: 20,
-        padding: 10,
-        borderRadius: 25,
-        overflow: 'hidden'
-    },
-    label: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginVertical: 15,
-        fontSize: 20,
-    },
-    input: {
-        margin: 10,
-        borderColor: 'black',
-        borderWidth: 1,
-        borderRadius: 10,
-        width: '80%'
-    }
-});
 
 AddTicket.propTypes = {};
 

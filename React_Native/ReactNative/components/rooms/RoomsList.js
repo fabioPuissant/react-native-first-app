@@ -9,12 +9,11 @@ import {
   Alert,
   Keyboard
 } from 'react-native';
-
 import { connect } from 'react-redux';
 import { getRooms } from '../../redux/actions/roomActions';
-
 import Header from '../../layout/Header';
 import RoomItem from './RoomItem';
+import styles from './roomStyles';
 
 const RoomsList = ({ room: { rooms, current }, navigation, getRooms }) => {
   const [enteredValue, setEnteredValue] = useState('');
@@ -93,11 +92,7 @@ const RoomsList = ({ room: { rooms, current }, navigation, getRooms }) => {
     </ScrollView>
   );
 };
-const styles = StyleSheet.create({
-  centerHoriz: {
-    padding: 20
-  }
-});
+
 RoomsList.propTypes = {
   room: PropTypes.object.isRequired,
   getRooms: PropTypes.func.isRequired

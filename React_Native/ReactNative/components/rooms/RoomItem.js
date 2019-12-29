@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Chip, withTheme, Button, Card } from 'react-native-paper';
 import { clearCurrent, setCurrentRoom } from '../../redux/actions/roomActions';
 import * as Animated from 'react-native-animatable';
+import styles from './roomStyles';
 
 const RoomItem = props => {
   const { colors } = props.theme;
@@ -47,28 +48,6 @@ const RoomItem = props => {
     </Animated.View>
   );
 };
-
-const styles = StyleSheet.create({
-  mgnV: {
-    marginVertical: 20
-  },
-  centerText: {
-    justifyContent: 'center'
-  },
-  chipContainer: {
-    flex: 1,
-    alignItems: 'flex-end',
-    top: 5,
-    right: 5,
-    position: 'absolute'
-  },
-  greyText: {
-    color: 'grey'
-  },
-  whiteBg: {
-    backgroundColor: '#FFF'
-  }
-});
 
 export default connect(null, { clearCurrent, setCurrentRoom })(
   withTheme(RoomItem)
