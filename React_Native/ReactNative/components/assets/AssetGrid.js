@@ -19,9 +19,8 @@ const AssetGrid = ({
 
   useFocusEffect(
     useCallback(() => {
-      console.debug('AssetGrid takes focus');
       getTickets();
-      return () => console.debug('screen loses focus');
+      return () => console.debug();
     }, [])
   );
 

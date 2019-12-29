@@ -2,25 +2,34 @@ import React, { usState, useEffect, useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Card, Title, Paragraph } from 'react-native-paper';
-
+import { useNavigation } from 'react-navigation-hooks';
 import {
   upVoteTicket,
-  setCurrentTicket
+  setCurrentTicket,
+  deleteTicket
 } from '../../redux/actions/ticketActions';
+import { NavigationEvents } from 'react-navigation';
 
 const TicketDetailItem = ({
   ticket: { current },
   navigation,
-  upVoteTicket
+  upVoteTicket,
+  deleteTicket
 }) => {
+  const { navigate } = useNavigation();
   const [displayUpvotes, setDisplayUpvotes] = useState(current.numberOfVotes);
+
   const upvoteHandler = () => {
     upVoteTicket(current);
   };
 
+  const removeTicket = () => {
+    deleteTicket(current.id);
+    navigate('Assets');
+  };
+
   useEffect(() => {
     setDisplayUpvotes(current.numberOfVotes);
-    console.log('.................OI.............');
   }, [current]);
 
   return (
@@ -55,6 +64,16 @@ const TicketDetailItem = ({
             onPress={upvoteHandler}
           >
             Upvote
+          </Button>
+          <Button
+            style={styles.button}
+            color='red'
+            icon='delete'
+            mode='contained'
+            background-color='#4CAF50'
+            onPress={removeTicket}
+          >
+            Delete
           </Button>
         </View>
       </Card.Actions>
@@ -101,6 +120,8 @@ const mapStateToProps = state => ({
   ticket: state.ticket
 });
 
-export default connect(mapStateToProps, { upVoteTicket, setCurrentTicket })(
-  TicketDetailItem
-);
+export default connect(mapStateToProps, {
+  upVoteTicket,
+  setCurrentTicket,
+  deleteTicket
+})(TicketDetailItem);

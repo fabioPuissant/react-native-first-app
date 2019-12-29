@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableWithoutFeedback,
-  Text,
-  Image
-} from 'react-native';
 import { connect } from 'react-redux';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { deleteTicket } from '../../redux/actions/ticketActions';
+import { StyleSheet, View, Image } from 'react-native';
+
+import { Button, Card, Title, Paragraph } from 'react-native-paper';
 
 const TicketItem = ({ ticket, navigation }) => {
   const handleTicketNavigation = () => {
@@ -64,7 +60,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   fixToText: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   button: {
     margin: 5
@@ -87,4 +84,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default TicketItem;
+export default connect(null, { deleteTicket })(TicketItem);

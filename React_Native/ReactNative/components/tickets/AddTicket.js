@@ -19,7 +19,7 @@ const AddTicket = ({ addTicketToAsset, navigation }) => {
     };
     const assetName = navigation.getParam('assetNameParam');
     addTicketToAsset({ assetName, ticketObject });
-    navigate('Rooms');
+    navigate('Assets');
   };
 
   return (

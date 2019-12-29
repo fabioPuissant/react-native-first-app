@@ -82,7 +82,6 @@ export const addTicketToAsset = prop => async dispatch => {
         'Content-Type': 'application/json'
       }
     });
-    console.log(prop.assetName, prop.ticketObject);
     const data = await resp.json();
 
     dispatch({

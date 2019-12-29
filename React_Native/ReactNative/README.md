@@ -31,6 +31,8 @@
 >
 > [Link to code](./components/rooms/RoomItem.js)
 
+> Een anonieme gebruiker kan een ticket wissen
+
 # Michaël individuele taak:
 
 > ## Gebruik gemaakt van de camera om QR-codes te scannen.
