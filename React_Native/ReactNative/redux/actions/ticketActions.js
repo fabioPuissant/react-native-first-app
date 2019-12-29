@@ -3,7 +3,8 @@ import {
   GET_TICKETS_OF_ASSET,
   GET_TICKETS,
   UPVOTE_TICKET,
-  SET_CURRENT_TICKET
+  SET_CURRENT_TICKET,
+  DELETE_TICKET
 } from '../constants/applicationConstants';
 
 import { BASE_URL } from '../constants/baseUrl';
@@ -35,6 +36,24 @@ export const getTicketsOfAsset = assetId => async dispatch => {
     dispatch({
       type: GET_TICKETS_OF_ASSET,
       payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: TICKETS_ERROR,
+      payload: error
+    });
+  }
+};
+
+export const deleteTicket = id => async dispatch => {
+  try {
+    await fetch(`${url}/delete?id=${id}`, {
+      method: 'DELETE'
+    });
+
+    dispatch({
+      type: DELETE_TICKET,
+      payload: id
     });
   } catch (error) {
     dispatch({

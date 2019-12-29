@@ -1,15 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useFocusEffect } from 'react-navigation-hooks';
 import { connect } from 'react-redux';
-import { View, FlatList, SafeAreaView, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import { getTickets } from '../../redux/actions/ticketActions';
 import AssetItem from './AssetItem';
 import FadeInView from '../../layout/FadeInView';
 import styles from './assetStyles';
-import {
-  setCurrentAsset,
-  findAssetsOfRoom,
-  clearCurrentAsset
-} from '../../redux/actions/assetActions';
+import { setCurrentAsset } from '../../redux/actions/assetActions';
 
 const AssetGrid = ({
   assets,
@@ -20,6 +17,13 @@ const AssetGrid = ({
   useEffect(() => {
     getTickets();
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      getTickets();
+      return () => console.debug();
+    }, [])
+  );
 
   return (
     <View style={styles.container}>

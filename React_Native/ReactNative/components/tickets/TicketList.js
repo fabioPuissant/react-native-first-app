@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { View, FlatList, StyleSheet } from 'react-native';
+
 import TicketItem from './TicketItem';
 import { connect } from 'react-redux';
 import { getTickets } from '../../redux/actions/ticketActions';
-import styles from './ticketStyles';
 
-const TicketList = ({ asset: { current }, currentAsset, navigation, ticket: { allTickets }, getTicketsOfAsset }) => {
-  useEffect(() => {
-    getTickets();
-  }, []);
-
+const TicketList = ({ currentAsset, navigation, tickets }) => {
   return (
     <View>
       <FlatList
         removeClippedSubviews={false}
-        data={allTickets.filter(t => t.assetId === currentAsset.id)}
-        renderItem={({ item }) => <TicketItem ticket={item} navigation={navigation} />}
+        data={tickets.filter(t => t.assetId === currentAsset.id)}
+        renderItem={({ item }) => (
+          <TicketItem ticket={item} navigation={navigation} />
+        )}
         keyExtractor={item => item.id}
       />
     </View>
@@ -24,8 +21,7 @@ const TicketList = ({ asset: { current }, currentAsset, navigation, ticket: { al
 };
 
 const mapStateToProps = state => ({
-  ticket: state.ticket,
-  asset: state.asset
+  ticket: state.ticket
 });
 
 // EXPORT FOR REDUX

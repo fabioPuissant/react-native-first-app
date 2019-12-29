@@ -13,7 +13,8 @@ const initialState = {
   current: null,
   loading: false,
   error: null,
-  addSucceeded: false
+  addSucceeded: false,
+  added: false
 };
 
 export default (state = initialState, action) => {
@@ -47,7 +48,8 @@ export default (state = initialState, action) => {
     case ADD_TICKET_TO_ASSET:
       return {
         ...state,
-        addSucceeded: action.payload
+        addSucceeded: action.payload,
+        added: !state.added
       };
     case ALL_ASSETS:
       return {

@@ -1,57 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FlatList,
-  Image,
-  View,
-  StyleSheet,
-  Keyboard,
-  Text
-} from 'react-native';
-import PropTypes from 'prop-types';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import SearchBarAssets from '../layout/SearchBarAssets';
-import { TextInput, Banner, Button, Title, FAB } from 'react-native-paper';
+import { FAB } from 'react-native-paper';
 import TicketList from '../components/tickets/TicketList';
+import { setCurrentAsset } from '../redux/actions/assetActions';
+import { getTickets } from '../redux/actions/ticketActions';
 import styles from './screenStyles';
-
-import {
-  getTickets,
-  getTicketsOfAsset,
-  upVoteTicket
-} from '../redux/actions/ticketActions';
-
-import {
-  setCurrentAsset,
-  findAssetsOfRoom,
-  clearCurrentAsset
-} from '../redux/actions/assetActions';
 
 const AssetScreen = ({
   navigation,
-  asset: { current },
-  ticket: { tickets },
-  getTicketsOfAsset
+  asset: { current, added },
+  ticket: { allTickets, changed },
+  getTickets
 }) => {
-  const [enteredValue, setEnteredValue] = useState('');
-
-  const assetNameInputHandler = text => {
-    setEnteredValue(text);
-  };
-
-  const confirmInputHandler = () => {
-    const foundAssets = enteredValue;
-  };
+  useEffect(() => {
+    getTickets();
+  }, []);
 
   useEffect(() => {
-    getTicketsOfAsset(current);
-  }, []);
+    getTickets();
+    console.log('Updating now');
+  }, [changed, added]);
 
   return (
     <View style={styles.view}>
       <TicketList
         currentAsset={current}
         navigation={navigation}
-        tickets={tickets}
+        tickets={allTickets}
       />
       <FAB
         style={styles.fab}
@@ -76,6 +52,6 @@ const mapStateToProps = state => ({
   ticket: state.ticket
 });
 
-export default connect(mapStateToProps, { setCurrentAsset, getTicketsOfAsset })(
+export default connect(mapStateToProps, { setCurrentAsset, getTickets })(
   AssetScreen
 );
