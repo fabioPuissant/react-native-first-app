@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styles from './ticketStyles';
 import { View, Image } from 'react-native';
 import { Button, Card, Title, Paragraph } from 'react-native-paper';
+import { deleteTicket } from '../../redux/actions/ticketActions';
 
 const TicketItem = ({ ticket, navigation }) => {
   const handleTicketNavigation = () => {
