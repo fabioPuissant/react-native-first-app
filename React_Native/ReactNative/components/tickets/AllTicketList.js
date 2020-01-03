@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet, TouchableOpacity, Keyboard } from 'react-native';
+import { View, FlatList, StyleSheet, TouchableOpacity, Keyboard, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import TicketItem from './TicketItem';
 import { connect } from 'react-redux';
@@ -14,19 +14,28 @@ const AllTicketList = ({ navigation, ticket: { allTickets }, getTickets }) => {
 
   const [enteredValue, setEnteredValue] = useState();
   const [selectedNumber, setSelectedNumber] = useState(false);
-  const [displayedTickets, setDisplayedTickets] = useState({ allTickets });
+  const [displayedTickets, setDisplayedTickets] = useState();
+  const [confirmed, setConfirmed] = useState(false);
+  const [secondConfirm, setSecondConfirm] = useState(true);
+
+  useEffect(() => {
+    if (secondConfirm) {
+      setDisplayedTickets(allTickets);
+    }
+  });
 
   const confirmInputHandler = () => {
     const chosenNumber = parseInt(enteredValue);
     if (isNaN(chosenNumber) || chosenNumber <= 0) {
       Alert.alert(
         'Invalid number',
-        'Number has to be a number greather than 0.',
+        'The number of upvotes has to be greater than 0.',
         [{ text: 'Ok', style: 'destructive', onPress: resetInputHandler }]
       );
       return;
     }
 
+    setConfirmed(true);
     setSelectedNumber(chosenNumber);
     Keyboard.dismiss();
   };
@@ -37,12 +46,21 @@ const AllTicketList = ({ navigation, ticket: { allTickets }, getTickets }) => {
   };
 
   const numberInputHandler = inputText => {
-    setEnteredValue(inputText.replace(/[^0-9]/g, ''));
+    if (inputText == "") {
+      setSecondConfirm(true);
+      setEnteredValue(inputText.replace(/[^0-9]/g, ''));
+    }
+    else {
+      setSecondConfirm(false);
+      setEnteredValue(inputText.replace(/[^0-9]/g, ''));
+    }
   };
 
-  if (selectedNumber) {
+  if (confirmed) {
     const foundTickets = displayedTickets.filter(t => t.numberOfVotes >= selectedNumber);
     setDisplayedTickets(foundTickets);
+    setConfirmed(false);
+    setSecondConfirm(false);
   }
 
   return (
@@ -54,7 +72,7 @@ const AllTicketList = ({ navigation, ticket: { allTickets }, getTickets }) => {
       />
       <FlatList
         removeClippedSubviews={false}
-        data={allTickets}
+        data={displayedTickets}
         renderItem={({ item }) => (
           <TicketItem ticket={item} navigation={navigation} />
         )}
@@ -68,7 +86,6 @@ const mapStateToProps = state => ({
   ticket: state.ticket
 });
 
-// EXPORT FOR REDUX
 export default connect(mapStateToProps, {
   getTickets
 })(AllTicketList);
