@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SearchBarAssets from '../layout/SearchBarAssets';
 import { TextInput, Banner, Button, Title, FAB } from 'react-native-paper';
 import AllTicketList from '../components/tickets/AllTicketList';
 import styles from './screenStyles';
