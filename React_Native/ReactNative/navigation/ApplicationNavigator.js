@@ -14,7 +14,9 @@ import AllTicketScreen from '../screens/AllTicketScreen';
 import HeaderButton from '../components/HeaderButton';
 import colors from '../constants/Colors';
 import AllAssetsScreen from '../screens/AllAssetsScreen';
+import MapScreen from '../screens/MapScreen';
 import QR from '../screens/QR';
+import RoomMapScreen from '../screens/RoomMapScreen';
 
 const Hidden = () => {
   return null;
@@ -23,6 +25,12 @@ const Hidden = () => {
 const MainNavigator = createDrawerNavigator(
   {
     Home: Home,
+    RoomMap: {
+      screen: RoomMapScreen,
+      navigationOptions: {
+        drawerLabel: <Hidden />
+      }
+    },
     Assets: {
       screen: AssetScreen,
       navigationOptions: {
@@ -50,6 +58,7 @@ const MainNavigator = createDrawerNavigator(
       }
     },
     'All Tickets': AllTicketScreen,
+    Location: MapScreen,
     QR: QR
   },
   {

@@ -89,8 +89,8 @@ const RoomScreen = ({
             These are the assets of this room
           </Title>
         ) : (
-          <Title style={styles.purpleText}>This room has no assets</Title>
-        )}
+            <Title style={styles.purpleText}>This room has no assets</Title>
+          )}
       </View>
       <AddHappinessScoreDialog
         dialogShow={dialogShow}
@@ -101,8 +101,8 @@ const RoomScreen = ({
       {!assets && assets.length === 0 ? (
         <Text>No Assets found</Text>
       ) : (
-        <AssetGrid assets={assets} navigation={navigation} />
-      )}
+          <AssetGrid assets={assets} navigation={navigation} />
+        )}
     </View>
   );
 };

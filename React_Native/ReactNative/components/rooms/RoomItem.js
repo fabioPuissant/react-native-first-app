@@ -43,6 +43,13 @@ const RoomItem = props => {
           >
             See Assets
           </Button>
+          <Button
+            onPress={() => {
+              props.setCurrentRoom(props.room);
+              props.navigation.navigate('RoomMap');
+            }}>
+            See Location
+          </Button>
         </Card.Actions>
       </Card>
     </Animated.View>
