@@ -55,9 +55,9 @@ Elke room heeft een locatie. men kan de locatie zien door bij het correspoderend
 Ook via het menu kan je naar de interactieve map navigeren
 
 packages:
-..* react-native-maps
-..* expo-permissions
-..* expo-location
+* react-native-maps
+* expo-permissions
+* expo-location
 
 interactieve map:
 > [Link to code](./screens/MapScreen.js)
