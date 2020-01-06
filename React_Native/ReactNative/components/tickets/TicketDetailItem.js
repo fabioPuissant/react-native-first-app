@@ -13,6 +13,7 @@ import { NavigationEvents } from 'react-navigation';
 
 const TicketDetailItem = ({
   ticket: { current },
+  asset,
   navigation,
   upVoteTicket,
   deleteTicket
@@ -26,7 +27,7 @@ const TicketDetailItem = ({
 
   const removeTicket = () => {
     deleteTicket(current.id);
-    navigate('Assets');
+    asset.current ? navigate('Assets') : navigate('All Tickets');
   };
 
   useEffect(() => {
@@ -83,7 +84,8 @@ const TicketDetailItem = ({
 };
 
 const mapStateToProps = state => ({
-  ticket: state.ticket
+  ticket: state.ticket,
+  asset: state.asset
 });
 
 export default connect(mapStateToProps, {

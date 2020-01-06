@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet, TouchableOpacity, Keyboard, Alert } from 'react-native';
+import { View, FlatList, Keyboard, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import TicketItem from './TicketItem';
 import { connect } from 'react-redux';
-import { getTickets } from '../../redux/actions/ticketActions';
+import {
+  getTickets,
+  setCurrentTicket
+} from '../../redux/actions/ticketActions';
 import styles from './ticketStyles';
 import SearchBarUpvotes from '../../layout/SearchBarUpvotes';
 
-const AllTicketList = ({ navigation, ticket: { allTickets }, getTickets }) => {
+const AllTicketList = ({
+  navigation,
+  ticket: { allTickets, changed },
+  getTickets,
+  setCurrentTicket
+}) => {
   useEffect(() => {
     getTickets();
   }, []);
@@ -23,6 +31,10 @@ const AllTicketList = ({ navigation, ticket: { allTickets }, getTickets }) => {
       setDisplayedTickets(allTickets);
     }
   });
+
+  useEffect(() => {
+    getTickets();
+  }, [changed]);
 
   const confirmInputHandler = () => {
     const chosenNumber = parseInt(enteredValue);
@@ -46,18 +58,19 @@ const AllTicketList = ({ navigation, ticket: { allTickets }, getTickets }) => {
   };
 
   const numberInputHandler = inputText => {
-    if (inputText == "") {
+    if (inputText == '') {
       setSecondConfirm(true);
       setEnteredValue(inputText.replace(/[^0-9]/g, ''));
-    }
-    else {
+    } else {
       setSecondConfirm(false);
       setEnteredValue(inputText.replace(/[^0-9]/g, ''));
     }
   };
 
   if (confirmed) {
-    const foundTickets = displayedTickets.filter(t => t.numberOfVotes >= selectedNumber);
+    const foundTickets = displayedTickets.filter(
+      t => t.numberOfVotes >= selectedNumber
+    );
     setDisplayedTickets(foundTickets);
     setConfirmed(false);
     setSecondConfirm(false);
@@ -74,7 +87,11 @@ const AllTicketList = ({ navigation, ticket: { allTickets }, getTickets }) => {
         removeClippedSubviews={false}
         data={displayedTickets}
         renderItem={({ item }) => (
-          <TicketItem ticket={item} navigation={navigation} />
+          <TicketItem
+            onPress={() => setCurrentTicket(item)}
+            ticket={item}
+            navigation={navigation}
+          />
         )}
         keyExtractor={item => item.id}
       />
@@ -82,10 +99,13 @@ const AllTicketList = ({ navigation, ticket: { allTickets }, getTickets }) => {
   );
 };
 
+AllTicketList.prototypes = {};
+
 const mapStateToProps = state => ({
   ticket: state.ticket
 });
 
 export default connect(mapStateToProps, {
-  getTickets
+  getTickets,
+  setCurrentTicket
 })(AllTicketList);

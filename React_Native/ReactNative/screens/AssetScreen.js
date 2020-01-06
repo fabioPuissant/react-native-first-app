@@ -19,7 +19,6 @@ const AssetScreen = ({
 
   useEffect(() => {
     getTickets();
-    console.log('Updating now');
   }, [changed, added]);
 
   return (

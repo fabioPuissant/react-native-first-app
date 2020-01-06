@@ -85,7 +85,8 @@ const MainNavigator = createDrawerNavigator(
 );
 
 const ApplicationNavigator = createStackNavigator({
-  RootStack: { screen: MainNavigator }
+  RootStack: { screen: MainNavigator },
+  AllAssets: AllAssetsScreen
 });
 
 export default createAppContainer(ApplicationNavigator);
