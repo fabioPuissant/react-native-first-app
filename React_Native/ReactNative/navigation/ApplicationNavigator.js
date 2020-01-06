@@ -49,7 +49,7 @@ const MainNavigator = createDrawerNavigator(
         drawerLabel: <Hidden />
       }
     },
-    AllAssets: AllAssetsScreen,
+    'All Assets': AllAssetsScreen,
 
     TicketAddScreen: {
       screen: TicketAddScreen,

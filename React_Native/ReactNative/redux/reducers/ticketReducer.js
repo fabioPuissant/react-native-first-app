@@ -39,7 +39,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         tickets: tickets,
-        current: ticket
+        current: ticket,
+        changed: !state.changed
       };
 
     case SET_CURRENT_TICKET:

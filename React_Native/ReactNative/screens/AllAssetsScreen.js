@@ -1,18 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { View, Stylesheet } from 'react-native';
+import { View } from 'react-native';
 import Header from '../layout/Header';
 import { findAllAssets } from '../redux/actions/assetActions';
 import { setCurrentAsset } from '../redux/actions/assetActions';
 import AssetGrid from '../components/assets/AssetGrid';
 import styles from './screenStyles';
 
-const AllAssetsScreen = ({
-  navigation,
-  findAllAssets,
-  setCurrentAsset,
-  asset: { assets, current }
-}) => {
+const AllAssetsScreen = ({ navigation, findAllAssets, asset: { assets } }) => {
   useEffect(() => {
     findAllAssets();
   }, []);

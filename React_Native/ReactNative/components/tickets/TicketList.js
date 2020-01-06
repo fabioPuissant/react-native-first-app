@@ -4,10 +4,11 @@ import { View, FlatList, StyleSheet } from 'react-native';
 import TicketItem from './TicketItem';
 import { connect } from 'react-redux';
 import { getTickets } from '../../redux/actions/ticketActions';
+import styles from './ticketStyles';
 
 const TicketList = ({ currentAsset, navigation, tickets }) => {
   return (
-    <View>
+    <View style={styles.flexOne}>
       <FlatList
         removeClippedSubviews={false}
         data={tickets.filter(t => t.assetId === currentAsset.id)}

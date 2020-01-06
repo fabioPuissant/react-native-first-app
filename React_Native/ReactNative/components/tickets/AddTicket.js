@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TextInput, Alert } from 'react-native';
+import { Text, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, Card, Avatar } from 'react-native-paper';
-import { addTicketToAsset } from '../../redux/actions/assetActions'
+import { addTicketToAsset } from '../../redux/actions/assetActions';
 import styles from './ticketStyles';
 import { useNavigation } from 'react-navigation-hooks';
 

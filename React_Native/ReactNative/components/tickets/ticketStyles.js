@@ -56,7 +56,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 15,
-    fontSize: 20,
+    fontSize: 20
   },
   input: {
     margin: 10,
@@ -64,5 +64,8 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     width: '80%'
+  },
+  flexOne: {
+    flex: 1
   }
 });

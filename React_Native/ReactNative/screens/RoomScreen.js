@@ -31,7 +31,7 @@ const RoomScreen = ({
 
   return (
     <View style={{ flex: 1 }}>
-      <Header title={`Room Details`} navigation={navigation} />
+      <Header title={`Room Details`} goTo='Home' />
       {!show ? (
         <Button onPress={() => setShow(true)}>Show room detail</Button>
       ) : null}
@@ -45,7 +45,6 @@ const RoomScreen = ({
               label: 'Add happiness',
               onPress: () => setDialogShow(true)
             },
-
             {
               label: ''
             },
@@ -89,8 +88,8 @@ const RoomScreen = ({
             These are the assets of this room
           </Title>
         ) : (
-            <Title style={styles.purpleText}>This room has no assets</Title>
-          )}
+          <Title style={styles.purpleText}>This room has no assets</Title>
+        )}
       </View>
       <AddHappinessScoreDialog
         dialogShow={dialogShow}
@@ -101,8 +100,8 @@ const RoomScreen = ({
       {!assets && assets.length === 0 ? (
         <Text>No Assets found</Text>
       ) : (
-          <AssetGrid assets={assets} navigation={navigation} />
-        )}
+        <AssetGrid assets={assets} navigation={navigation} />
+      )}
     </View>
   );
 };

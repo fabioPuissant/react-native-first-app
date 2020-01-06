@@ -1,5 +1,5 @@
-import React, { usState, useEffect, useState } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Card, Title, Paragraph } from 'react-native-paper';
 import styles from './ticketStyles';
@@ -9,12 +9,10 @@ import {
   setCurrentTicket,
   deleteTicket
 } from '../../redux/actions/ticketActions';
-import { NavigationEvents } from 'react-navigation';
 
 const TicketDetailItem = ({
   ticket: { current },
   asset,
-  navigation,
   upVoteTicket,
   deleteTicket
 }) => {

@@ -75,7 +75,7 @@ const RoomsList = ({ room: { rooms, current }, navigation, getRooms }) => {
     <ScrollView>
       <Header title='All Rooms' />
       <SearchBarHappiness
-        placeholder='Search rooms with score greather than...'
+        placeholder='Search Rooms with score or more'
         numberInputHandler={numberInputHandler}
         confirmInputHandler={confirmInputHandler}
         enteredValue={enteredValue}

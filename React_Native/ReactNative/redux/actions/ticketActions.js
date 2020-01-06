@@ -50,7 +50,6 @@ export const deleteTicket = id => async dispatch => {
     await fetch(`${url}/delete?id=${id}`, {
       method: 'DELETE'
     });
-
     dispatch({
       type: DELETE_TICKET,
       payload: id

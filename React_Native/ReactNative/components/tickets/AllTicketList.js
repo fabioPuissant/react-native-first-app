@@ -77,7 +77,7 @@ const AllTicketList = ({
   }
 
   return (
-    <View>
+    <View style={styles.flexOne}>
       <SearchBarUpvotes
         numberInputHandler={numberInputHandler}
         confirmInputHandler={confirmInputHandler}
@@ -99,7 +99,12 @@ const AllTicketList = ({
   );
 };
 
-AllTicketList.prototypes = {};
+AllTicketList.prototypes = {
+  getTickets: PropTypes.func.isRequired,
+  setCurrentTicket: PropTypes.func.isRequired,
+  ticket: PropTypes.object.isRequired,
+  navigation: PropTypes.object
+};
 
 const mapStateToProps = state => ({
   ticket: state.ticket

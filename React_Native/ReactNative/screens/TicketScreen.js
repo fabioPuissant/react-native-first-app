@@ -12,7 +12,7 @@ const TicketScreen = props => {
 
   return (
     <View>
-      <Header navigation={props.navigation} title={'Ticket details'} />
+      <Header goTo='Assets' title={'Ticket details'} />
       <TicketDetailItem navigation={props.navigation} />
     </View>
   );
