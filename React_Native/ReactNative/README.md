@@ -46,3 +46,21 @@ Het idee is om op assets zoals een beamer een qr-code te plakken, die kan dan ge
 Er is een QR-code onder React_Native/ReactNative folder toegevoegd om te demonstreren.
 
 > [Link to QR-code](./qr-code.png)
+
+# Michael individuele taak
+
+> ## geolocation
+
+Elke room heeft een locatie. men kan de locatie zien door bij het correspoderende room item op "see location" te klikken. Hierna wordt een static map image genereert waar een api key voor wordt gebruikt. Hier kan men de locatie vragen van de gebruiker en als mijn op de statische map klikt wordt men naar een interactieve map gebracht.
+Ook via het menu kan je naar de interactieve map navigeren
+
+packages:
+..* react-native-maps
+..* expo-permissions
+..* expo-location
+
+interactieve map:
+> [Link to code](./screens/MapScreen.js)
+
+statische map:
+> [Link to code](./screens/RoomMapScreen.js)
