@@ -33,7 +33,8 @@
 
 > Toevoeging van een animatie tijdens het authenticeren, hiervoor is gebruikt gemaakt van een package (Lottie package)
 >
-> [Link to Lottie pkg]('https://github.com/react-native-community/lottie-react-native')
+> [Link to Lottie pkg]('https://github.com/react-native-community/lottie-react-native')  
+> [Link to code Lottie](./components/animated/FingerprintAnimation.js)
 
 # Michaël individuele taak:
 
