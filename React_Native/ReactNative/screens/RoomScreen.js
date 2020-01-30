@@ -52,21 +52,22 @@ const RoomScreen = ({
               label: 'Hide',
               onPress: () => setShow(false)
             },
-
             {
               label: ''
             }
           ]}
           icon={({ size }) => (
-            <Image
-              source={{
-                uri: current.imageUrl
-              }}
-              style={{
-                width: size,
-                height: size
-              }}
-            />
+            <View>
+              <Image
+                source={{
+                  uri: current.imageUrl
+                }}
+                style={{
+                  width: size,
+                  height: size
+                }}
+              />
+            </View>
           )}
         >
           {current ? (

@@ -1,20 +1,17 @@
-import React, { useState, useEffect, Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import FingerprintAnimation from '../../components/animated/FingerprintAnimation';
 import { connect } from 'react-redux';
 import {
   View,
   Platform,
-  StyleSheet,
   TextInput,
   Modal,
   TouchableHighlight,
-  Image,
   Text
 } from 'react-native';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 import { addHapinessScore } from '../../redux/actions/roomActions';
-import * as Animated from 'react-native-animatable';
 import styles from '../screenStyles';
 
 const AddHappinessScoreDialog = ({
@@ -78,6 +75,8 @@ const AddHappinessScoreDialog = ({
               onShow={() => scanFingerPrint()}
             >
               <View style={styles.modal}>
+                <FingerprintAnimation />
+
                 <View style={styles.innerContainer}>
                   <Text>Confirm with fingerprint</Text>
                   {failedCount > 0 && (
@@ -85,6 +84,7 @@ const AddHappinessScoreDialog = ({
                       Failed to authenticate, press cancel to try again.
                     </Text>
                   )}
+
                   <TouchableHighlight
                     onPress={async () => {
                       LocalAuthentication.cancelAuthenticate();
