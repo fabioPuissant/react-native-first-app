@@ -31,7 +31,9 @@
 >
 > [Link to code](./components/rooms/RoomItem.js)
 
-> Een anonieme gebruiker kan een ticket wissen
+> Toevoeging van een animatie tijdens het authenticeren, hiervoor is gebruikt gemaakt van een package (Lottie package)
+>
+> [Link to Lottie pkg]('https://github.com/react-native-community/lottie-react-native')
 
 # Michaël individuele taak:
 
@@ -55,12 +57,15 @@ Elke room heeft een locatie. men kan de locatie zien door bij het correspoderend
 Ook via het menu kan je naar de interactieve map navigeren
 
 packages:
-* react-native-maps
-* expo-permissions
-* expo-location
+
+- react-native-maps
+- expo-permissions
+- expo-location
 
 interactieve map:
+
 > [Link to code](./screens/MapScreen.js)
 
 statische map:
+
 > [Link to code](./screens/RoomMapScreen.js)
