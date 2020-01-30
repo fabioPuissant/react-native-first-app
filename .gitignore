@@ -1,17 +1,3 @@
 
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/public/bundles/
-/var/
-/vendor/
-/.idea
-src/Util/PdoFactory.php
-React_Native/ReactNative/.expo/web/cache
-###< symfony/framework-bundle ###
-
-###> symfony/web-server-bundle ###
-/.web-server-pid
-###< symfony/web-server-bundle ###
-/src/util/
+###> mac###
+/.DS_Store
